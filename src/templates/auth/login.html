@@ -4,6 +4,10 @@
 <h1>{% block title %}Login{% endblock %}</h1>
 {% endblock %}
 
+{% block links %}
+    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+{% endblock %}
+
 {% block content %}
 <form method="post">
     <label for="username">Username</label>
@@ -13,5 +17,3 @@
     <input type="submit" value="Log In">
 </form>
 {% endblock %}
-
-<!--vim:ft=htmldjango: -->

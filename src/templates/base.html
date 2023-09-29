@@ -4,21 +4,20 @@
 <nav>
     <h1>Library Management System</h1>
     <ul>
-        {% if g.user %}
+        {% if session["username"] %}
             <li><span>{{ g.user['username'] }}</span></li>
             <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
         {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            {% block links %}{% endblock %}
         {% endif %}
     </ul>
 </nav>
 <section>
-<header>
-{% block header %}{% endblock %}
-</header>
-{% for message in get_flashed_messages() %}
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-{% endfor %}
-{% block content %}{% endblock %}
+    {% endfor %}
+    {% block content %}{% endblock %}
 </section>
