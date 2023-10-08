@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Issue Booker{% endblock %}</h1>
+{% endblock %}
+
+{% block links %}
+<li><a href="{{ url_for('return_book') }}">Return Books</a></li>
+{% endblock %}
+
+{% block content %}
+<form>
+    <label for="book_id">Book Id</label>
+    <input type="text" name="book_id">
+    <label for="username">Username</label>
+    <input type="text" name="username">
+    <label for="bookname">Book name</label>
+    <input type="text" name="bookname">
+    <label for="book_author">Book Author</label>
+    <input type="text" name="book_author">
+    <input type="button" value="Submit" onclick="issue()">
+</form>
+{% endblock %}
+
+<script>
+    const issue = () => {
+        console.log("hello")
+    }
+</script>

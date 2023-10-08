@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Add members{% endblock %}</h1>
+{% endblock %}
+
+{% block links %}
+<li><a href="{{ url_for('manage_members') }}">Manage Members</a></li>
+{% endblock %}
+
+{% block content %}
+<form id="form">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone">
+    </div>
+    <div>
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address">
+    </div>
+    <input type="button" value="Add Member" onclick="add_member()">
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static',filename='scripts/add_member.js') }}"></script>
+{% endblock %}
