@@ -4,7 +4,7 @@ from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
 from src.models import Member
-from auth import login_required
+from .auth import login_required
 
 
 bp = Blueprint("members", __name__, url_prefix="/members")

@@ -31,7 +31,9 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = (
-            get_db().execute(select(User).where(User.name == username)).scalars().one()
+            get_db()
+            .execute(select(User).where(User.name == username))
+            .scalar_one_or_none()  # username is unique for everyone, ensured in register view
         )
 
 
@@ -57,22 +59,14 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        error = None
 
-        if not username:
-            error = "Username is required"
-        if not password:
-            error = "password is required"
-
-        if error is None:
-            try:
-                db = get_db()
-                db.add(User(username, generate_password_hash(password)))
-                db.commit()
-                return redirect(url_for("index"))
-            except IntegrityError:
-                error = f"User {username} is already registered"
-        flash(error)
+        try:
+            db = get_db()
+            db.add(User(username, generate_password_hash(password)))
+            db.commit()
+            return redirect(url_for("index"))
+        except IntegrityError:
+            flash(f"User {username} is already registered")
     return render_template("auth/register.html")
 
 
@@ -86,7 +80,7 @@ def login():
 
         db = get_db()
         try:
-            user = db.execute(select(User).where(User.name == username)).scalars().one()
+            user = db.execute(select(User).where(User.name == username)).scalar_one()
         except NoResultFound:
             error = "No user found!"
             flash(error)

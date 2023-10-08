@@ -1,13 +1,13 @@
 import json.tool
 from typing import Dict
 
-from flask import Blueprint, flash, json, render_template, request, url_for
+from flask import Blueprint, flash, json, render_template, request
 import httpx
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
 from src.models import Book, Issued
-from auth import login_required
+from .auth import login_required
 
 bp = Blueprint("books", __name__, url_prefix="/books")
 
