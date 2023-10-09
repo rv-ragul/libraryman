@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Return Books</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        Book return ..
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Return Books{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form>
+    <div>
+        <label for="book_id">Bood Id</label>
+        <input type="text" name="book_id">
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static',filename='scripts/return_book.js') }}"></script>
+{% endblock %}

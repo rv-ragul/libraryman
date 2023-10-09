@@ -1,5 +1,11 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<body>
-    Import books
-</body>
+{% block header %}
+<h1>{% block title %}View Books{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% for book in books %}
+<li>{{ book.bookID }} {{ book.title }}</li>
+{% endfor %}
+{% endblock %}

@@ -9,21 +9,27 @@
 {% endblock %}
 
 {% block content %}
-<form>
-    <label for="book_id">Book Id</label>
-    <input type="text" name="book_id">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="bookname">Book name</label>
-    <input type="text" name="bookname">
-    <label for="book_author">Book Author</label>
-    <input type="text" name="book_author">
+<form id="form">
+    <div>
+        <label for="book_id">Book Id</label>
+        <input type="text" name="book_id">
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username">
+    </div>
+    <div>
+        <label for="bookname">Book name</label>
+        <input type="text" name="bookname">
+    </div>
+    <div>
+        <label for="book_author">Book Author</label>
+        <input type="text" name="book_author">
+    </div>
     <input type="button" value="Submit" onclick="issue()">
 </form>
 {% endblock %}
 
-<script>
-    const issue = () => {
-        console.log("hello")
-    }
-</script>
+{% block scripts %}
+<script src="{{ url_for('static',filename='scripts/issue_book.js') }}"></script>
+{% endblock %}
