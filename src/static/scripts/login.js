@@ -1,19 +1,15 @@
 const validate = () => {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
-    let error = false
-    if (!username) {
-        error = true
+
+    if (!username || !password) {
+        console.log("All the fields are required")
+        return false
     }
-    if (!password) {
-        error = true
-    }
-    if (!error) {
-        const form = new FormData()
-        form.append("username", username)
-        form.append("password", password)
-        return form
-    }
+    const form = new FormData()
+    form.append("username", username)
+    form.append("password", password)
+    return form
 }
 
 const login = (body) => {
