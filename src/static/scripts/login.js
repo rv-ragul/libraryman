@@ -1,19 +1,17 @@
 const login = () => {
-    const username = document.getElementById("username").value
-    const password = document.getElementById("password").value
+    const form = document.querySelector("form")
+    const username = form.username.value
+    const password = form.password.value
 
     if (!username || !password) {
         console.log("All the fields are required")
         return
     }
 
-    const form = new FormData()
-    form.append("username", username)
-    form.append("password", password)
-
+    const formData = new FormData(form)
     fetch("http://localhost:5000/auth/login", {
         method: "POST",
-        body: body,
+        body: formData,
     }).then((response) => {
         if (response.ok) {
             window.location.href = response.url

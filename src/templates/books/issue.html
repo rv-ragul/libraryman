@@ -1,32 +1,32 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %}Issue Booker{% endblock %}</h1>
+<h1>{% block title %}Issue Book{% endblock %}</h1>
 {% endblock %}
 
 {% block links %}
-<li><a href="{{ url_for('return_book') }}">Return Books</a></li>
+<li><a href="{{ url_for('books.return_book') }}">Return Books</a></li>
 {% endblock %}
 
 {% block content %}
 <form id="form">
     <div>
         <label for="book_id">Book Id</label>
-        <input type="text" name="book_id">
+        <input type="number" name="book_id">
     </div>
     <div>
-        <label for="username">Username</label>
-        <input type="text" name="username">
+        <label for="user_name">Username</label>
+        <input type="text" name="user_name">
     </div>
     <div>
-        <label for="bookname">Book name</label>
-        <input type="text" name="bookname">
+        <label for="book_name">Book name</label>
+        <input type="text" name="book_name">
     </div>
     <div>
         <label for="book_author">Book Author</label>
         <input type="text" name="book_author">
     </div>
-    <input type="button" value="Submit" onclick="issue()">
+    <input type="button" value="Submit" onclick="issue_book()">
 </form>
 {% endblock %}
 

@@ -1,21 +1,18 @@
 const add_member = () => {
-    const name = document.getElementById("name").value
-    const phone = document.getElementById("phone").value
-    const address = document.getElementById("address").value
+    const form = document.querySelector("form")
+    const name = form.name.value
+    const phone = form.phone.value
+    const address = form.address.value
 
     if (!name || !phone || !address) {
         console.log("All the fields are required")
         return
     }
 
-    const form = new FormData()
-    form.append("name", name)
-    form.append("phone", phone)
-    form.append("address", address)
-
+    const formData = new FormData(form)
     fetch("http://localhost:5000/members/add", {
         method: "POST",
-        body: form,
+        body: formData,
     }).then((response) => {
         if (response.ok) {
             console.log("New member added successfully!")
