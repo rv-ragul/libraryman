@@ -4,6 +4,11 @@
 <h1>{% block title %}View Books{% endblock %}</h1>
 {% endblock %}
 
+{% block links %}
+<li><a href="{{ url_for('books.issue') }}">Issue Book</a></li>
+<li><a href="{{ url_for('books.return_book') }}">Return Book</a></li>
+{% endblock %}
+
 {% block content %}
 {% for book in books %}
 <li>{{ book.bookID }} {{ book.title }}</li>

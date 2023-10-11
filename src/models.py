@@ -75,5 +75,14 @@ class Issued(Base):
     )
     return_date = Column(TIMESTAMP(timezone=True))
 
+    def __init__(self, bookID, user_name, title, authors) -> None:
+        self.bookId = bookID
+        self.user_name = user_name
+        self.title = title
+        self.authors = authors
+
+    def __repr__(self) -> str:
+        return f"<Issued {self.bookId, self.title !r}>"
+
 
 Base.metadata.create_all(bind=engine)

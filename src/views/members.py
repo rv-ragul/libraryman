@@ -25,8 +25,8 @@ def add_member():
         phone = request.form["phone"]
         address = request.form["address"]
 
+        db = get_db()
         try:
-            db = get_db()
             db.add(
                 Member(
                     name=name,
@@ -36,6 +36,7 @@ def add_member():
             )
             db.commit()
         except IntegrityError:
+            db.rollback()
             flash("Some error")
 
     return render_template("members/add.html")
@@ -46,10 +47,11 @@ def add_member():
 def remove_member(id):
     """Remove a member from Library database"""
 
+    db = get_db()
     try:
-        db = get_db()
+        # db.delete
         db.execute(delete(Member).where(Member.id == id))
     except IntegrityError:
-        pass
+        db.rollback()
 
     return render_template("members/view.html")
