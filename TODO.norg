@@ -1,0 +1,29 @@
+* Library management system
+
+** views
+*** books
+    - ( ) /
+    - ( ) /issue
+    - ( ) /return
+*** members
+    - ( ) /
+    - ( ) add
+    - ( ) remove
+*** auth
+    - ( ) login
+    - ( ) logout
+    - ( ) register
+
+** templates
+*** auth
+    - login
+    - register
+*** books
+    - import 
+    - view
+    - issue
+    - return 
+*** members
+    - add
+    - remove
+    - view
