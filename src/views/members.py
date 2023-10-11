@@ -1,18 +1,19 @@
-from flask import Blueprint, render_template, request, flash
-from sqlalchemy import delete
+from flask import Blueprint, flash, render_template, request, url_for
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
 from src.models import Member
+
 from .auth import login_required
 
 
 bp = Blueprint("members", __name__, url_prefix="/members")
 
 
-@bp.route("/", methods=["GET", "POST"])
-def members():
-    return render_template("members/view.html")
+@bp.get("/")
+def view_members():
+    members = Member.query.all()
+    return render_template("members/view.html", members=members)
 
 
 @bp.route("/add", methods=["GET", "POST"])
@@ -27,13 +28,7 @@ def add_member():
 
         db = get_db()
         try:
-            db.add(
-                Member(
-                    name=name,
-                    phone=phone,
-                    address=address,
-                )
-            )
+            db.add(Member(name=name, phone=phone, address=address))
             db.commit()
         except IntegrityError:
             db.rollback()
@@ -42,16 +37,19 @@ def add_member():
     return render_template("members/add.html")
 
 
-@bp.delete("/members/<int:id>")
+@bp.delete("/<int:id>")
 @login_required
 def remove_member(id):
     """Remove a member from Library database"""
 
     db = get_db()
     try:
-        # db.delete
-        db.execute(delete(Member).where(Member.id == id))
+        member = db.get(Member, id)
+        db.delete(member)
+        db.commit()
     except IntegrityError:
+        print("some error")
         db.rollback()
+        return "", 400
 
-    return render_template("members/view.html")
+    return "", 200

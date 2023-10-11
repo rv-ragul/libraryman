@@ -16,6 +16,7 @@ const add_member = () => {
     }).then((response) => {
         if (response.ok) {
             console.log("New member added successfully!")
+            form.reset()
         }
     })
 }

@@ -4,8 +4,21 @@
 <h1>{% block title %}View Members{% endblock %}</h1>
 {% endblock %}
 
+{% block links %}
+<li><a href="{{ url_for('members.add_member') }}">Add member</a></li>
+{% endblock %}
+
+
 {% block content %}
 {% for member in members %}
-<li>{{ member.id }} {{ member.name }}</li>
+<div id="{{ member.id }}">
+    <span>{{ member.id }} {{ member.name }}</span>
+    <button type="button" onclick="remove_member({{ member.id }})">Delete</button>
+</div>
 {% endfor %}
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ url_for('static',filename='scripts/remove_member.js') }}"></script>
 {% endblock %}

@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block links %}
-<li><a href="{{ url_for('members.members') }}">Manage Members</a></li>
+<li><a href="{{ url_for('members.view_members') }}">Manage Members</a></li>
 {% endblock %}
 
 {% block content %}
-<form id="form">
+<form>
     <div>
         <label for="name">Name</label>
         <input type="text" name="name">

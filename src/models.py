@@ -28,6 +28,9 @@ class Member(Base):
     phone = Column(String(12), nullable=False)
     address = Column(String(80), nullable=False)
 
+    def __repr__(self) -> str:
+        return f"<Member {self.id, self.name !r}>"
+
 
 class Book(Base):
     __tablename__ = "books"
