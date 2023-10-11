@@ -5,6 +5,11 @@ const importBooks = () => {
     const publisher = document.getElementById("publisher").value
     const page = document.getElementById("page").value
 
+    if (!title || !authors || !isbn || !publisher || !page) {
+        console.log("All the fields are required")
+        return
+    }
+
     const form = new FormData()
     form.append("title", title)
     form.append("authors", authors)
@@ -12,12 +17,10 @@ const importBooks = () => {
     form.append("publisher", publisher)
     form.append("page", page)
 
-    const options = {
+    fetch("http://localhost:5000/books/import", {
         method: "POST",
         body: form
-    }
-    fetch("http://localhost:5000/books/import", options)
-        .then((response) => {
-            console.log(response)
-        })
+    }).then((response) => {
+        console.log(response)
+    })
 }

@@ -1,7 +1,7 @@
 import click
 from flask import Flask
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
+from sqlalchemy.orm import declarative_base, scoped_session, sessionmaker
 
 engine = create_engine("postgresql://r-ragul:ragul2003@localhost:5432/postgres")
 session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
@@ -14,7 +14,7 @@ def get_db():
     return session
 
 
-def close_db(exception=None):
+def close_db(_=None):
     session.remove()
 
 
