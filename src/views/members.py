@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request, url_for
+from flask import Blueprint, flash, render_template, request
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -12,6 +12,8 @@ bp = Blueprint("members", __name__, url_prefix="/members")
 
 @bp.get("/")
 def view_members():
+    """List the members in the database"""
+
     members = Member.query.all()
     return render_template("members/view.html", members=members)
 

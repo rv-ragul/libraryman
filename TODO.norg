@@ -2,17 +2,17 @@
 
 ** views
 *** books
-    - ( ) /
-    - ( ) /issue
+    - (x) /
+    - (x) /issue
     - ( ) /return
 *** members
-    - ( ) /
-    - ( ) add
-    - ( ) remove
+    - (x) /
+    - (x) add
+    - (x) remove
 *** auth
-    - ( ) login
-    - ( ) logout
-    - ( ) register
+    - (x) login
+    - (x) logout
+    - (x) register
 
 ** templates
 *** auth
