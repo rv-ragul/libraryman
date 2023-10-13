@@ -1,1 +1,2 @@
-SECRET_KEY = "dev"
+SECRET_KEY = "de5"
+DEVEL = True

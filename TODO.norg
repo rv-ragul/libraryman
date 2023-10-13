@@ -4,7 +4,7 @@
 *** books
     - (x) /
     - (x) /issue
-    - ( ) /return
+    - (x) /return
 *** members
     - (x) /
     - (x) add
@@ -16,14 +16,14 @@
 
 ** templates
 *** auth
-    - login
-    - register
+    - ( ) login
+    - ( ) register
 *** books
-    - import 
-    - view
-    - issue
-    - return 
+    - ( ) import 
+    - ( ) view
+    - ( ) issue
+    - ( ) return 
 *** members
-    - add
-    - remove
-    - view
+    - ( ) add
+    - ( ) remove 
+    - ( ) view

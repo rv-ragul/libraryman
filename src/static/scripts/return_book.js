@@ -1,19 +1,23 @@
 const return_book = () => {
     const form = document.querySelector("form")
     const book_id = form.book_id.value
-    const return_date = form.return_date.value
+    const _return_date = form.return_date.value
 
-    if (!book_id || !return_date) {
+    if (!book_id || !_return_date) {
         console.log("All fields are required")
         return
     }
 
     const formData = new FormData(form)
-    formData.set("return_date", new Date(return_date))
+    let return_date = new Date(_return_date)
+    formData.set("return_date", return_date.toUTCString())
     fetch("http://localhost:5000/books/return", {
         method: "POST",
         body: formData
     }).then((response) => {
         console.log(response)
+        if (response.ok) {
+            form.reset()
+        }
     })
 }

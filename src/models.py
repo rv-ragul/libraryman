@@ -1,6 +1,6 @@
 from typing import Dict
 
-from sqlalchemy import BigInteger, Column, Float, Identity, Integer, String, func
+from sqlalchemy import BigInteger, Column, Date, Float, Identity, Integer, String, func
 from sqlalchemy.types import TIMESTAMP
 
 from src.database import Base, engine
@@ -76,7 +76,7 @@ class Issued(Base):
     issued_date = Column(
         TIMESTAMP(timezone=True), nullable=False, server_default=func.now()
     )
-    return_date = Column(TIMESTAMP(timezone=True))
+    return_date = Column(Date)
 
     def __init__(self, bookID, user_name, title, authors) -> None:
         self.bookId = bookID

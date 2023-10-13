@@ -1,10 +1,9 @@
-from datetime import datetime
+from datetime import date, datetime
 import json.tool
 from typing import Dict
 
-from flask import Blueprint, flash, json, render_template, request
+from flask import Blueprint, json, render_template, request
 import httpx
-from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -29,30 +28,48 @@ def view_books():
 def issue():
     if request.method == "POST":
         book_id = request.form["book_id"]
-        user_name = request.form["username"]
+        user_name = request.form["user_name"]
         book_name = request.form["book_name"]
         book_author = request.form["book_author"]
-        error = None
 
         db = get_db()
+        if not db.get(Book, book_id):
+            return "Requested book doesn't exist in the Library", 400
         try:
             db.add(Issued(book_id, user_name, book_name, book_author))
             db.commit()
         except IntegrityError:
-            error = "Some problem occurred"
+            db.rollback()
+            return "This book already issued to someone", 400
 
-        if error is None:
-            flash("Books database updated successfully")
-        else:
-            flash(error)
+        return "Book issued successfully!", 200
     return render_template("books/issue.html")
 
 
-@bp.route("/return")
+@bp.route("/return", methods=["GET", "POST"])
 @login_required
 def return_book():
     if request.method == "POST":
-        pass
+        book_id = request.form["book_id"]
+        return_date = request.form["return_date"]
+
+        fmt = "%a, %d %b %Y %H:%M:%S %Z"
+        return_date = datetime.strptime(return_date, fmt)
+        return_date = date(return_date.year, return_date.month, return_date.day)
+
+        db = get_db()
+        try:
+            issued_book = db.get(Issued, book_id)
+            assert issued_book is not None
+            issued_book.return_date = return_date
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+            return "Can't return the book", 400
+        except AssertionError:
+            return "Book with given ID is not issued", 400
+
+        return "Book returned successfully!"
     return render_template("books/return.html")
 
 

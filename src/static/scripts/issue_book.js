@@ -14,5 +14,8 @@ const issue_book = () => {
     fetch("http://localhost:5000/books/issue", {
         method: "POST",
         body: formData
+    }).then(async (response) => {
+        console.log(response)
+        console.log(await response.text())
     })
 }
