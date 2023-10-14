@@ -4,7 +4,7 @@
 <h1>{% block title %}Issue Book{% endblock %}</h1>
 {% endblock %}
 
-{% block links %}
+{% block routes %}
 <li><a href="{{ url_for('books.import_books') }}">Import Books</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return Books</a></li>

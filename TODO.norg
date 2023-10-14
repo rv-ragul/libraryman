@@ -9,6 +9,7 @@
     - (x) /
     - (x) add
     - (x) remove
+    - ( ) update
 *** auth
     - (x) login
     - (x) logout

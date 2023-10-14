@@ -64,9 +64,9 @@ def register():
             db = get_db()
             db.add(User(username, generate_password_hash(password)))
             db.commit()
-            return redirect(url_for("index"))
+            return redirect(url_for("auth.login"))
         except IntegrityError:
-            flash(f"User {username} is already registered")
+            return f"User {username} is already registered", 400
     return render_template("auth/register.html")
 
 
@@ -94,4 +94,7 @@ def login():
             session["username"] = user.name
             return redirect(url_for("index"))
         flash(error)
+    if request.method == "GET" and session.get("username"):
+        print(session)
+        return redirect(url_for("index"))
     return render_template("auth/login.html")
