@@ -1,4 +1,4 @@
-const login = () => {
+const login = (register) => {
     const form = document.querySelector("form")
     const username = form.username.value
     const password = form.password.value
@@ -8,8 +8,15 @@ const login = () => {
         return
     }
 
+    let url;
+    if (register) {
+        url = "http://localhost:5000/auth/register"
+    } else {
+        url = "http://localhost:5000/auth/login"
+    }
+
     const formData = new FormData(form)
-    fetch("http://localhost:5000/auth/login", {
+    fetch(url, {
         method: "POST",
         body: formData,
     }).then((response) => {

@@ -8,22 +8,27 @@ body {
     font-size: 1.2rem;
 }
 
-body> nav> div {
-    font-size: 1.4rem;
-}
-
-nav {
+body > nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-li {
+body > nav > div {
+    font-size: 1.4rem;
+}
+
+body > nav > ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+body > nav li {
     list-style: none;
     text-decoration: none;
 }
 
 main {
     font-weight: normal;
-    font-size:medium;
+    font-size: medium;
 }

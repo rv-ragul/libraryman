@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
-<nav>
-    <h1>Library Management System</h1>
-    <ul>
-        {% if session['username'] %}
-        <li><a href="{{ url_for('books.import_books') }}">Import Books</a></li>
-        <li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
-        <li><span>{{ g.user.name }}</span></li>
-        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-        {% else %}
-        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-        {% endif %}
-    </ul>
-</nav>
+{% extends 'base.html' %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}" />
+{% endblock %}
+
+{% block routes %}
+{% if session['username'] %}
+<li><a href="{{ url_for('books.view_books') }}">Books</a></li>
+<li><a href="{{ url_for('members.view_members') }}">Members</a></li>
+<li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+{% else %}
+<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+<li><a href="{{ url_for('auth.login') }}">Login</a></li>
+{% endif %} {% endblock %}
+
+{% block content %}
 <section>
     <div>Login successfull!</div>
 </section>
+{% endblock %}
