@@ -4,7 +4,7 @@ section {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 5%;
+    padding: 2%;
 }
 
 form {
@@ -21,6 +21,11 @@ section > div {
 
 .input {
     height: 1.5em;
+    padding: 1% 2%;
+}
+
+.input:focus {
+    border-style: none;
 }
 
 .button {
@@ -30,6 +35,7 @@ section > div {
     border: none;
     border-radius: 10%;
     padding: 5px 10px;
+    background-color: blue;
 }
 
 .button:hover {

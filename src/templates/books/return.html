@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}Return Books{% endblock %}</h1>
-{% endblock %}
-
 {% block routes %}
 <li><a href="{{ url_for('books.import_books') }}">Import Books</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
@@ -11,17 +7,20 @@
 {% endblock %}
 
 {% block content %}
-<form>
-    <div>
+<section>
+    <div>{% block title %}Return Books{% endblock %}</div>
+    <form>
         <label for="book_id">Bood Id</label>
-        <input type="text" name="book_id">
-    </div>
-    <div>
+        <input type="text" name="book_id" class="input">
         <label for="return_date">Return Date</label>
-        <input type="date" name="return_date">
-    </div>
-    <input type="button" value="Return book" onclick="return_book()">
-</form>
+        <input type="date" name="return_date" class="input">
+        <input type="button" value="Return book" onclick="return_book()" class="button">
+    </form>
+</section>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/form.css') }}">
 {% endblock %}
 
 {% block scripts %}

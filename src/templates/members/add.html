@@ -1,29 +1,26 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}Add members{% endblock %}</h1>
-{% endblock %}
-
 {% block routes %}
 <li><a href="{{ url_for('members.view_members') }}">Manage Members</a></li>
 {% endblock %}
 
 {% block content %}
-<form>
-    <div>
+<section>
+    <div>{% block title %}Add members{% endblock %}</div>
+    <form>
         <label for="name">Name</label>
-        <input type="text" name="name">
-    </div>
-    <div>
+        <input type="text" name="name" class="input">
         <label for="phone">Phone</label>
-        <input type="text" name="phone">
-    </div>
-    <div>
+        <input type="text" name="phone" class="input">
         <label for="address">Address</label>
-        <input type="text" name="address">
-    </div>
-    <input type="button" value="Add Member" onclick="add_member()">
-</form>
+        <input type="text" name="address" class="input">
+        <input type="button" value="Add Member" onclick="add_member()" class="button">
+    </form>
+</section>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/form.css') }}">
 {% endblock %}
 
 {% block scripts %}

@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}Import Books{% endblock %}</h1>
-{% endblock %}
-
 {% block routes %}
 <li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue Book</a></li>
@@ -12,28 +8,19 @@
 
 {% block content %}
 <section>
+    <div>{% block title %}Import Books{% endblock %}</div>
     <form>
-        <div>
-            <label for="title">Title</label>
-            <input type="text" name="title">
-        </div>
-        <div>
-            <label for="authors">Authors</label>
-            <input type="text" name="authors">
-        </div>
-        <div>
-            <label for="isbn">ISBN number</label>
-            <input type="text" name="isbn">
-        </div>
-        <div>
-            <label for="publisher">Publisher</label>
-            <input type="text" name="publisher">
-        </div>
-        <div>
-            <label for="page">Page</label>
-            <input type="text" name="page">
-        </div>
-        <input type="button" value="Submit" onclick="importBooks()">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="input">
+        <label for="authors">Authors</label>
+        <input type="text" name="authors" class="input">
+        <label for="isbn">ISBN number</label>
+        <input type="text" name="isbn" class="input">
+        <label for="publisher">Publisher</label>
+        <input type="text" name="publisher" class="input">
+        <label for="page">Page</label>
+        <input type="text" name="page" class="input">
+        <input type="button" value="Submit" onclick="importBooks()" class="button">
     </form>
 </section>
 {% endblock %}
