@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}Login{% endblock %}</h1>
-{% endblock %}
-
-{% block routes %}
-<li><a href="{{ url_for('auth.register') }}">Register</a></li>
-{% endblock %}
-
 {% block content %}
-<form>
-    <label for="username">Username</label>
-    <input type="text" name="username" class="input">
-    <label for="password">Password</label>
-    <input type="password" name="password" class="input">
-    <input type="button" value="Log In" onclick="login()" class="button">
-</form>
+<section>
+    <div>{% block title %}Login{% endblock %}</div>
+    <form>
+        <label for="username">Username</label>
+        <input type="text" name="username" class="input">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="input">
+        <input type="button" value="Log In" onclick="login()" class="button">
+        <div>Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></div>
+    </form>
+</section>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/auth.css') }}">
 {% endblock %}
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static',filename='scripts/login.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='scripts/auth.js') }}"></script>
 {% endblock %}

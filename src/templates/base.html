@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<title>{%block title %}{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
-<nav>
-    <h1>Library Management System</h1>
-    <ul>
-        {% block links %}{% endblock %}
-        {% if g.user %}
-        <li>{{ g.user.name }}</li>
-        {% endif %}
-    </ul>
-</nav>
-<section>
-    <header>
-        {% block header %}{% endblock %}
-    </header>
-    {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-    {% endfor %}
-    {% block content %}{% endblock %}
-</section>
+<head>
+    <title>{%block title %}{% endblock %} | Library Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
+    <!-- <meta http-equiv="refresh" content="3; URL=http://localhost:5000/"> -->
+    {% block styles %}{% endblock %}
+</head>
 
-{% block scripts %}{% endblock %}
+<body>
+    <nav>
+        <div>Library Management System</div>
+        <ul>
+            {% block routes %}{% endblock %}
+            {% if g.user %}
+            <li>{{ g.user.name }}</li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
