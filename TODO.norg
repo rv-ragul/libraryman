@@ -3,8 +3,9 @@
 ** views
 *** books
     - (x) /
-    - (x) /issue
-    - (x) /return
+    - (x) import
+    - (x) issue
+    - (x) return
 *** members
     - (x) /
     - (x) add
@@ -14,17 +15,18 @@
     - (x) login
     - (x) logout
     - (x) register
+    - ( ) update password
 
 ** templates
 *** auth
-    - ( ) login
-    - ( ) register
+    - (x) login
+    - (x) register
 *** books
-    - ( ) import 
-    - ( ) view
-    - ( ) issue
-    - ( ) return 
+    - (x) import
+    - (-) view
+    - (x) issue
+    - (x) return
 *** members
-    - ( ) add
+    - (x) add
     - ( ) remove 
-    - ( ) view
+    - (-) view

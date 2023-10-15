@@ -11,6 +11,11 @@ const login = (register) => {
     let url;
     if (register) {
         url = "http://localhost:5000/auth/register"
+        const confirmPassword = form.confirmPassword.value
+        if (password.trim() !== confirmPassword.trim()) {
+            console.log("Passwords don't match")
+            return
+        }
     } else {
         url = "http://localhost:5000/auth/login"
     }

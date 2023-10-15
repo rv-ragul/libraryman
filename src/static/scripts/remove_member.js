@@ -8,3 +8,11 @@ const remove_member = (id) => {
         }
     })
 }
+
+const update_member = (id) => {
+    fetch("http://localhost:5000/members/" + id, {
+        method: "PUT",
+    }).then((response) => {
+        console.log(response)
+    })
+}
