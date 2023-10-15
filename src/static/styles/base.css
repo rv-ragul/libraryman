@@ -1,34 +1,33 @@
 * {
-    padding: 0;
-    margin: 0;
-    font-size: 1.1rem;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 body {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
-
 body > nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
 body > nav > div {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
 }
-
 body > nav > ul {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 body > nav li {
-    list-style: none;
-    text-decoration: none;
+  list-style: none;
+  text-decoration: none;
 }
 
 main {
-    font-weight: normal;
-    font-size: medium;
+  font-weight: normal;
+  font-size: medium;
 }
+
+/*# sourceMappingURL=base.css.map */

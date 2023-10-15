@@ -1,0 +1,43 @@
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 2%;
+
+    & > div {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 15px;
+}
+
+.input {
+    height: 1.5em;
+    padding: 1% 2%;
+
+    &:focus {
+        border-style: none;
+    }
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    border: none;
+    border-radius: 10%;
+    padding: 5px 10px;
+    background-color: blue;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
