@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}" />
-{% endblock %}
-
 {% block routes %}
 {% if session['username'] %}
 <li><a href="{{ url_for('books.view_books') }}">Books</a></li>

@@ -7,7 +7,7 @@
 
 <body>
     <nav>
-        <div>Library Management System</div>
+        <div><a href="{{ url_for('index') }}">Library Management System</a></div>
         <ul>
             {% block routes %}{% endblock %}
             {% if g.user %}
@@ -15,9 +15,8 @@
             {% endif %}
         </ul>
     </nav>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+
+    {% block content %}{% endblock %}
 
     {% block scripts %}{% endblock %}
 </body>

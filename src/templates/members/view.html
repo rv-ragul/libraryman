@@ -1,23 +1,41 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}View Members{% endblock %}</h1>
-{% endblock %}
-
 {% block routes %}
 <li><a href="{{ url_for('members.add_member') }}">Add member</a></li>
 {% endblock %}
 
-
 {% block content %}
-{% for member in members %}
-<div id="{{ member.id }}">
-    <span>{{ member.id }} {{ member.name }}</span>
-    <button type="button" onclick="remove_member({{ member.id }})">Delete</button>
-</div>
-{% endfor %}
+<div class="title">{% block title %}View Members{% endblock %}</div>
+<section>
+    <table cellpadding="10">
+        <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        {% for member in members %}
+        <tr id="{{ member.id }}">
+            <td>{{ member.id }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.phone }}</td>
+            <td>{{ member.address }}</td>
+            <td>
+                <div>
+                    <button onclick="update_member({{ member.id }})" class="button update">Update</button>
+                    <button onclick="remove_member({{ member.id }})" class="button remove">Remove</button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
 {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/view1.css') }}">
+{% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static',filename='scripts/remove_member.js') }}"></script>

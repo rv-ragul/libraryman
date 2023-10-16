@@ -1,17 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block routes %}
 
-{% block header %}
-<h1>{% block title %}View Books{% endblock %}</h1>
-{% endblock %}
-
-{% block routes %}
 <li><a href="{{ url_for('books.import_books') }}">Import Books</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue Book</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return Book</a></li>
-{% endblock %}
 
-{% block content %}
-{% for book in books %}
-<li>{{ book.bookID }} {{ book.title }}</li>
-{% endfor %}
+{% endblock %} {% block content %}
+<div class="title">{% block title %}View Books{% endblock %}</div>
+<section>
+    <table cellpadding="5">
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>ISBN Number</th>
+            <th>Publisher</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+        <tr id="{{ book.bookID }}">
+            <td>{{ book.bookID }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.publisher }}</td>
+            <td>
+                <div>
+                    <button onclick="issue({{ book.bookID }})" class="button">
+                        Issue
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %} {% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/view1.css') }}" />
+{% endblock %} {% block scripts %}
+
+<script src="{{ url_for('static',filename='scripts/issue_book.js') }}"></script>
 {% endblock %}

@@ -23,10 +23,10 @@
     - (x) register
 *** books
     - (x) import
-    - (-) view
+    - (x) view
     - (x) issue
     - (x) return
 *** members
     - (x) add
-    - ( ) remove 
-    - (-) view
+    - (x) remove 
+    - (x) view
