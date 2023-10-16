@@ -1,19 +1,50 @@
-table {
+section {
+    height: 100%;
+    max-width: 100vw;
     display: flex;
-    width: 100%;
-    border-collapse: collapse;
-    border: solid;
-    padding: 10px;
-    overflow-x: scroll;
+    padding: 0 20px;
+    margin: 20px;
+    overflow: scroll;
 
-    th,
-    td {
-        border-bottom: 1px solid #ddd;
-        padding: 0.5em;
-    }
+    table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
 
-    td:not(:nth-child(2)) {
-        text-align: center;
+        tr {
+            border-bottom: 1px solid #000;
+
+            th {
+                text-align: left;
+                position: sticky;
+                top: 0;
+                background: #00bcd4;
+                color: #fff;
+
+                &:nth-child(1) {
+                    background: #03707d;
+                    text-align: center;
+                }
+            }
+
+            td {
+                text-align: left;
+
+                &:nth-child(1) {
+                    background: #00bcd4;
+                    color: #fff;
+                    text-align: center;
+                }
+
+                &:last-child div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    gap: 20px;
+                }
+            }
+        }
     }
 }
 
@@ -21,6 +52,7 @@ table {
     border: none;
     border-radius: 10%;
     padding: 5px 10px;
+    cursor: pointer;
 }
 
 .update {

@@ -1,24 +1,51 @@
-table {
+section {
+  height: 100%;
+  max-width: 100vw;
   display: flex;
+  padding: 0 20px;
+  margin: 20px;
+  overflow: scroll;
+}
+section table {
   width: 100%;
+  text-align: left;
   border-collapse: collapse;
-  border: solid;
-  padding: 10px;
-  overflow-x: scroll;
 }
-table th,
-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 0.5em;
+section table tr {
+  border-bottom: 1px solid #000;
 }
-table td:not(:nth-child(2)) {
+section table tr th {
+  text-align: left;
+  position: sticky;
+  top: 0;
+  background: #00bcd4;
+  color: #fff;
+}
+section table tr th:nth-child(1) {
+  background: #03707d;
   text-align: center;
+}
+section table tr td {
+  text-align: left;
+}
+section table tr td:nth-child(1) {
+  background: #00bcd4;
+  color: #fff;
+  text-align: center;
+}
+section table tr td:last-child div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
 }
 
 .button {
   border: none;
   border-radius: 10%;
   padding: 5px 10px;
+  cursor: pointer;
 }
 
 .update {
