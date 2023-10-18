@@ -39,6 +39,38 @@ def add_member():
     return render_template("members/add.html")
 
 
+@bp.route("/update", methods=["GET", "POST"])
+@login_required
+def update_member():
+    """Update a member details in the library database"""
+
+    db = get_db()
+    if request.method == "POST":
+        id = request.form["id"]
+        name = request.form["name"]
+        phone = request.form["phone"]
+        address = request.form["address"]
+
+        try:
+            member = db.get(Member, id)
+            assert member is not None
+            member.name = name  # type:ignore
+            member.phone = phone  # type:ignore
+            member.address = address  # type:ignore
+            db.commit()
+        except AssertionError:
+            return "Member does not exist", 400
+        except IntegrityError:
+            db.rollback()
+            return "some error", 400
+
+    member = None
+    if request.method == "GET":
+        id = request.args.get("id")
+        member = db.get(Member, id)
+    return render_template("members/update.html", member=member)
+
+
 @bp.delete("/<int:id>")
 @login_required
 def remove_member(id):
