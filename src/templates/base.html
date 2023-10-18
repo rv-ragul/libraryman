@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <title>{%block title %}{% endblock %} | Library Management System</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
@@ -16,7 +17,9 @@
         </ul>
     </nav>
 
-    {% block content %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
     {% block scripts %}{% endblock %}
 </body>
