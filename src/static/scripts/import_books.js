@@ -1,3 +1,7 @@
+const notify = (msg) => {
+    console.log(msg)
+}
+
 const importBooks = () => {
     const form = document.querySelector("form")
     const formData = new FormData(form)

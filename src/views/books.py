@@ -61,7 +61,7 @@ def return_book():
         try:
             issued_book = db.get(Issued, book_id)
             assert issued_book is not None
-            issued_book.return_date = return_date
+            issued_book.return_date = return_date  # type:ignore
             db.commit()
         except IntegrityError:
             db.rollback()

@@ -1,3 +1,7 @@
+const notify = (msg) => {
+    console.log(msg)
+}
+
 const remove_member = (id) => {
     fetch("http://localhost:5000/members/" + id, {
         method: "DELETE"

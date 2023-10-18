@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request
+from flask import Blueprint, render_template, request
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -34,7 +34,7 @@ def add_member():
             db.commit()
         except IntegrityError:
             db.rollback()
-            flash("Some error")
+            return "Some error", 400
 
     return render_template("members/add.html")
 

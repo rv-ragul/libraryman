@@ -1,3 +1,7 @@
+const notify = (msg) => {
+    console.log(msg)
+}
+
 const return_book = () => {
     const form = document.querySelector("form")
     const book_id = form.book_id.value

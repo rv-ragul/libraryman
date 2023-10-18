@@ -1,3 +1,7 @@
+const notify = (msg) => {
+    console.log(msg)
+}
+
 const add_member = () => {
     const form = document.querySelector("form")
     const name = form.name.value
