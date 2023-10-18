@@ -4,7 +4,7 @@ const return_book = () => {
     const _return_date = form.return_date.value
 
     if (!book_id || !_return_date) {
-        console.log("All fields are required")
+        notify("All fields are required")
         return
     }
 
@@ -15,7 +15,7 @@ const return_book = () => {
         method: "POST",
         body: formData
     }).then((response) => {
-        console.log(response)
+        notify(response)
         if (response.ok) {
             form.reset()
         }

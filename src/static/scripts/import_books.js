@@ -6,6 +6,6 @@ const importBooks = () => {
         method: "POST",
         body: formData
     }).then((response) => {
-        console.log(response)
+        notify(response)
     })
 }

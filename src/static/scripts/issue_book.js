@@ -6,7 +6,7 @@ const issue_book = () => {
     const book_author = form.book_author.value
 
     if (!book_id || !user_name || !book_name || !book_author) {
-        console.log("All the fields are required")
+        notify("All the fields are required")
         return
     }
 
@@ -15,7 +15,7 @@ const issue_book = () => {
         method: "POST",
         body: formData
     }).then(async (response) => {
-        console.log(response)
-        console.log(await response.text())
+        notify(response)
+        notify(await response.text())
     })
 }

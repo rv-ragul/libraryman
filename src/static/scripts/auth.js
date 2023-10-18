@@ -4,7 +4,7 @@ const login = (register) => {
     const password = form.password.value
 
     if (!username || !password) {
-        console.log("All the fields are required")
+        notify("All the fields are required")
         return
     }
 
@@ -13,7 +13,7 @@ const login = (register) => {
         url = "http://localhost:5000/auth/register"
         const confirmPassword = form.confirmPassword.value
         if (password.trim() !== confirmPassword.trim()) {
-            console.log("Passwords don't match")
+            notify("Passwords don't match")
             return
         }
     } else {
