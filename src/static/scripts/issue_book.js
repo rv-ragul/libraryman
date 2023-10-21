@@ -23,3 +23,48 @@ const issue_book = () => {
         notify(await response.text())
     })
 }
+
+// Search books based on title and authors
+const form = document.querySelector("form")
+const title_input = form.querySelector("[name=title]");
+const authors_input = form.querySelector("[name=authors]")
+const btnSearch = form.querySelector("#search")
+const btnReset = form.querySelector("#reset")
+
+const get_members = () => {
+    const url = "http://localhost:5000/books/"
+    const params = new URLSearchParams()
+
+    const title = title_input.value;
+    const authors = authors_input.value;
+    if (title !== '') {
+        params.append("title", title)
+    }
+    if (authors !== '') {
+        params.append("authors", authors)
+    }
+    if (params.size) {
+        location.href = url + "?" + params.toString()
+    }
+
+}
+
+title_input.addEventListener("keydown", (event) => {
+    if (event.key == "Enter") {
+        get_members()
+    }
+})
+
+authors_input.addEventListener("keydown", (event) => {
+    if (event.key == "Enter") {
+        get_members()
+    }
+})
+
+btnSearch.addEventListener("click", () => {
+    get_members()
+})
+
+btnReset.addEventListener("click", () => {
+    location.href = "http://localhost:5000/books/"
+})

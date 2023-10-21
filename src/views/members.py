@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -14,7 +15,18 @@ bp = Blueprint("members", __name__, url_prefix="/members")
 def view_members():
     """List the members in the database"""
 
-    members = Member.query.all()
+    id = request.args.get("id")
+    name = request.args.get("name")
+
+    db = get_db()
+    stmt = select(Member)
+
+    if id:
+        stmt = stmt.where(Member.id == id)
+    elif name:
+        stmt = stmt.where(Member.name.like(f"%{name}%"))
+
+    members = db.scalars(stmt).all()
     return render_template("members/view.html", members=members)
 
 

@@ -6,6 +6,15 @@
 
 {% endblock %} {% block content %}
 <div class="title">{% block title %}View Books{% endblock %}</div>
+<form>
+    <label for="title">Title</label>
+    <input type="text" name="title" placeholder="Enter Book Title">
+    <label for="authors">Authors</label>
+    <input type="text" name="authors" placeholder="Enter Authors Name">
+    <button type="button" id="search">Search</button>
+    <button type="button" id="reset">Reset</button>
+</form>
+
 <section>
     <table cellpadding="5">
         <tr>

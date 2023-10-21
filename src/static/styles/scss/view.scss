@@ -1,5 +1,33 @@
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    input {
+        height: 20px;
+        width: 25%;
+        padding: 5px 10px;
+
+        &:focus {
+            border-style: none;
+        }
+    }
+
+    button {
+        color: blue;
+        padding: 5px 10px;
+        border-color: blue;
+        border-radius: 10%;
+        border-width: 1px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 section {
-    height: 100%;
     max-width: 100vw;
     display: flex;
     padding: 0 20px;

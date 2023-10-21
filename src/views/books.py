@@ -1,9 +1,9 @@
 from datetime import date, datetime
-import json.tool
 from typing import Dict
 
 from flask import Blueprint, json, render_template, request
 import httpx
+from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -19,7 +19,18 @@ bp = Blueprint("books", __name__, url_prefix="/books")
 def view_books():
     """View books in the Library and search them by author and book name"""
 
-    books = Book.query.all()
+    title = request.args.get("title")
+    authors = request.args.get("authors")
+
+    db = get_db()
+    stmt = select(Book)
+
+    if title:
+        stmt = stmt.where(Book.title.like(f"%{title}%"))
+    if authors:
+        stmt = stmt.where(Book.authors.like(f"%{authors}%"))
+
+    books = db.scalars(stmt).all()
     return render_template("books/view.html", books=books)
 
 
