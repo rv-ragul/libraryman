@@ -3,17 +3,13 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 20px;
-  padding: 2%;
 }
-section > div {
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-form {
+section form {
   display: flex;
   flex-direction: column;
+  align-items: left;
   width: 30%;
   gap: 15px;
 }
@@ -33,7 +29,7 @@ form {
   border: none;
   border-radius: 10%;
   padding: 5px 10px;
-  background-color: blue;
+  font-size: 1em;
 }
 .button:hover {
   cursor: pointer;

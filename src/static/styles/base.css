@@ -1,7 +1,6 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-size: 1.2rem;
   margin: 0;
   padding: 0;
@@ -9,11 +8,14 @@ body {
 }
 body > nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  background-color: red;
+  justify-content: space-between;
+  background-color: paleturquoise;
+  padding: 0 10px;
+}
+body > nav > div {
+  display: flex;
+  flex-shrink: 0;
 }
 body > nav > div > a {
   color: inherit;
@@ -21,20 +23,27 @@ body > nav > div > a {
   text-decoration: none !important;
 }
 body > nav > ul {
+  padding: 0;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  flex-shrink: 0;
 }
 body > nav li {
+  padding-left: 10px;
+  padding-right: 10px;
   list-style: none;
   text-decoration: none;
 }
-body > .title {
+
+main {
+  width: 100%;
+}
+main > div {
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-weight: bold;
   font-size: 1.5em;
+  margin: 15px;
 }
 
 /*# sourceMappingURL=base.css.map */

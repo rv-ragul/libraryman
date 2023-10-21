@@ -10,7 +10,7 @@
     - (x) /
     - (x) add
     - (x) remove
-    - ( ) update
+    - (x) update
 *** auth
     - (x) login
     - (x) logout
@@ -30,3 +30,4 @@
     - (x) add
     - (x) remove 
     - (x) view
+    - (x) update

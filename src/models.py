@@ -49,18 +49,18 @@ class Book(Base):
     publisher = Column(String(100), nullable=False)
 
     def __init__(self, book: Dict) -> None:
-        self.bookID = book.get("bookID")
-        self.title = book.get("title")
-        self.authors = book.get("authors")
-        self.average_rating = book.get("average_rating")
-        self.isbn = book.get("isbn")
-        self.isbn13 = book.get("isbn13")
-        self.language_code = book.get("language_code")
-        self.num_pages = book.get("  num_pages")
-        self.ratings_count = book.get("ratings_count")
-        self.text_reviews_count = book.get("text_reviews_count")
-        self.publication_date = book.get("publication_date")
-        self.publisher = book.get("publisher")
+        self.bookID = book["bookID"]
+        self.title = book["title"]
+        self.authors = book["authors"]
+        self.average_rating = book["average_rating"]
+        self.isbn = book["isbn"]
+        self.isbn13 = book["isbn13"]
+        self.language_code = book["language_code"]
+        self.num_pages = book["  num_pages"]
+        self.ratings_count = book["ratings_count"]
+        self.text_reviews_count = book["text_reviews_count"]
+        self.publication_date = book["publication_date"]
+        self.publisher = book["publisher"]
 
     def __repr__(self) -> str:
         return f"<Book {self.title!r}"
