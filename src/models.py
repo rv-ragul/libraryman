@@ -12,7 +12,7 @@ class User(Base):
     name = Column(String(50), primary_key=True)
     password = Column(String(120), nullable=False)
 
-    def __init__(self, name, password):
+    def __init__(self, name, password) -> None:
         self.name = name
         self.password = password
 
@@ -27,6 +27,11 @@ class Member(Base):
     name = Column(String(20), nullable=False)
     phone = Column(String(12), nullable=False)
     address = Column(String(80), nullable=False)
+
+    def __init__(self, name, phone, address) -> None:
+        self.name = name
+        self.phone = phone
+        self.address = address
 
     def __repr__(self) -> str:
         return f"<Member {self.id, self.name !r}>"

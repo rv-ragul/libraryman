@@ -66,9 +66,9 @@ def update_member():
         try:
             member = db.get(Member, id)
             assert member is not None
-            member.name = name  # type:ignore
-            member.phone = phone  # type:ignore
-            member.address = address  # type:ignore
+            member.name = name
+            member.phone = phone
+            member.address = address
             db.commit()
         except AssertionError:
             return "Member does not exist", 400

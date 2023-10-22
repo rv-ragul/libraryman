@@ -48,6 +48,23 @@ def login_required(view):
     return wrapped_view
 
 
+@bp.post("/update")
+def update_password():
+    password = request.form["password"]
+    db = get_db()
+    try:
+        user = db.get(User, g.user.name)
+        assert user is not None
+        user.password = generate_password_hash(password)
+        db.commit()
+    except AssertionError:
+        return "Failed to get logged in user", 400
+    except IntegrityError:
+        db.rollback()
+        return "Failed to update password", 400
+    return ""
+
+
 @bp.route("/logout")
 def logout():
     session.clear()

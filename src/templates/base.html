@@ -11,15 +11,38 @@
         <div><a href="{{ url_for('index') }}">Library Management System</a></div>
         <ul>
             {% block routes %}{% endblock %}
-            {% if g.user %}
-            <li>{{ g.user.name }}</li>
-            {% endif %}
+            <li onclick="toggleDropdown()">ragul</li>
         </ul>
+        <span id="dropdown" style="display: none;">
+            <ul>
+                <li>{{ g.user.name }}</li>
+                <li onclick="showChangeForm()">Change Password</li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </span>
     </nav>
+
+    <section id="update" style="display: none;">
+        <div>
+            <div>Update Password</div>
+            <form id="updatePassword">
+                <label for="password">New Password</label>
+                <input type="password" name="password" class="input">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" class="input">
+                <div>
+                    <button type="button" onclick="cancel()">Cancel</button>
+                    <button type="button" onclick="changePassword()">Update</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
     {% block scripts %}{% endblock %}
+
+    <script src="{{ url_for('static',filename='scripts/base.js') }}"></script>
 </body>

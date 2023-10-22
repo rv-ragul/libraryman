@@ -11,7 +11,8 @@ body > nav {
   align-items: center;
   justify-content: space-between;
   background-color: paleturquoise;
-  padding: 0 10px;
+  padding: 10px;
+  height: fit-content;
 }
 body > nav > div {
   display: flex;
@@ -23,21 +24,121 @@ body > nav > div > a {
   text-decoration: none !important;
 }
 body > nav > ul {
-  padding: 0;
   display: flex;
   flex-shrink: 0;
+  margin: 0;
+  padding: 0;
 }
-body > nav li {
+body > nav > ul li {
   padding-left: 10px;
   padding-right: 10px;
   list-style: none;
   text-decoration: none;
 }
-
-main {
+body > nav > ul li > a {
+  text-decoration-line: none;
+}
+body > nav > ul li:hover {
+  cursor: pointer;
+}
+body > nav span {
+  background-color: gray;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+}
+body > nav span::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  z-index: -1;
+  background-color: gray;
+  transform: rotate(45deg);
+}
+body > nav span ul {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  gap: 5px;
+  margin: 0;
+}
+body > nav span ul li {
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  padding: 0 5px;
+}
+body > nav span ul li > a {
+  text-decoration-line: none;
+  color: black;
+}
+body > nav span ul li:hover:not(:first-child) {
+  cursor: pointer;
+  background-color: blue;
+}
+body #update {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body #update > div {
+  background-color: aqua;
+  padding: 2em 2.5em;
+  border-radius: 2%;
+}
+body #update > div > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+body #update > div > form {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 15px;
+}
+body #update > div > form > input {
+  height: 2em;
+  padding: 1% 2%;
+}
+body #update > div > form > input:focus {
+  border-style: none;
+}
+body #update > div > form > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1em;
+}
+body #update > div > form > div > button {
+  border: none;
+  border-radius: 10%;
+  padding: 5px 10px;
+  font-size: 1em;
+}
+body #update > div > form > div > button:hover {
+  cursor: pointer;
+}
+body main {
   width: 100%;
 }
-main > div {
+body main > div {
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -4,7 +4,6 @@
 {% if session['username'] %}
 <li><a href="{{ url_for('books.view_books') }}">Books</a></li>
 <li><a href="{{ url_for('members.view_members') }}">Members</a></li>
-<li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
 {% else %}
 <li><a href="{{ url_for('auth.register') }}">Register</a></li>
 <li><a href="{{ url_for('auth.login') }}">Login</a></li>

@@ -15,7 +15,7 @@
     - (x) login
     - (x) logout
     - (x) register
-    - ( ) update password
+    - (x) update password
 
 ** templates
 *** auth
