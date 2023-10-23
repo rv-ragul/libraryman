@@ -1,7 +1,3 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const remove_member = (id) => {
     fetch("http://localhost:5000/members/" + id, {
         method: "DELETE"
@@ -18,7 +14,7 @@ const update_member = (id) => {
 }
 
 // Search members based on id or name
-const form = document.querySelector("form")
+const form = document.querySelector("#Form")
 const id_input = form.querySelector("[name=id]")
 const name_input = form.querySelector("[name=name]")
 const btnSearch = form.querySelector("#search")

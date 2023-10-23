@@ -1,9 +1,5 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const update_member = () => {
-    const form = document.querySelector("form")
+    const form = document.querySelector("#Form")
     const id = form.id.value
     const name = form.name.value
     const phone = form.phone.value

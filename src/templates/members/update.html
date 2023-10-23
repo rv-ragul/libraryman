@@ -10,8 +10,8 @@
     {% block title %}Update Members {% endblock %}
 </div>
 
-<section>
-    <form>
+<section id="Section">
+    <form id="Form">
         <label for="id">ID</label>
         <input type="number" name="id" class="input" value="{{ member.id }}" {% if member %}disabled{% endif %}>
         <label for="name">Name</label>

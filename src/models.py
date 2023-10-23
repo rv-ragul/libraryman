@@ -74,7 +74,7 @@ class Book(Base):
 class Issued(Base):
     __tablename__ = "issued"
 
-    bookId = Column(Integer, primary_key=True)
+    bookID = Column(Integer, primary_key=True)
     user_name = Column(String(50), nullable=False)
     title = Column(String(80), nullable=False)
     authors = Column(String(80), nullable=False)

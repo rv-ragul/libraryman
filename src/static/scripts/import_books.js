@@ -1,9 +1,5 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const importBooks = () => {
-    const form = document.querySelector("form")
+    const form = document.querySelector("#Form")
     const formData = new FormData(form)
 
     fetch("http://localhost:5000/books/import", {

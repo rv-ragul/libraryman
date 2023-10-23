@@ -1,63 +1,63 @@
-form {
+#Form {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-form input {
+#Form input {
   height: 20px;
   width: 25%;
   padding: 5px 10px;
 }
-form input:focus {
+#Form input:focus {
   border-style: none;
 }
-form button {
+#Form button {
   color: blue;
   padding: 5px 10px;
   border-color: blue;
   border-radius: 10%;
   border-width: 1px;
 }
-form button:hover {
+#Form button:hover {
   cursor: pointer;
 }
 
-section {
+#Section {
   max-width: 100vw;
   display: flex;
   padding: 0 20px;
   margin: 20px;
   overflow: scroll;
 }
-section table {
+#Section table {
   width: 100%;
   text-align: left;
   border-collapse: collapse;
 }
-section table tr {
+#Section table tr {
   border-bottom: 1px solid #000;
 }
-section table tr th {
+#Section table tr th {
   text-align: left;
   position: sticky;
   top: 0;
   background: #00bcd4;
   color: #fff;
 }
-section table tr th:nth-child(1) {
+#Section table tr th:nth-child(1) {
   background: #03707d;
   text-align: center;
 }
-section table tr td {
+#Section table tr td {
   text-align: left;
 }
-section table tr td:nth-child(1) {
+#Section table tr td:nth-child(1) {
   background: #00bcd4;
   color: #fff;
   text-align: center;
 }
-section table tr td:last-child div {
+#Section table tr td:last-child div {
   display: flex;
   justify-content: center;
   align-items: center;

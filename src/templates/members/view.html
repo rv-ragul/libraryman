@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="title">{% block title %}View Members{% endblock %}</div>
-<form>
+<form id="Form">
     <label for="id">ID</label>
     <input type="text" name="id" placeholder="Enter ID">
     <label for="name">Name</label>
@@ -14,7 +14,7 @@
     <button type="button" id="search">Search</button>
     <button type="button" id="reset">Reset</button>
 </form>
-<section>
+<section id="Section">
     <table cellpadding="10">
         <tr>
             <th>Member ID</th>

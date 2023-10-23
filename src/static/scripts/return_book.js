@@ -1,9 +1,5 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const return_book = () => {
-    const form = document.querySelector("form")
+    const form = document.querySelector("#Form")
     const book_id = form.book_id.value
     const _return_date = form.return_date.value
 

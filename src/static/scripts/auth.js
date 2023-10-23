@@ -1,9 +1,5 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const login = (register) => {
-    const form = document.querySelector("form")
+    const form = document.querySelector("#Form")
     const username = form.username.value
     const password = form.password.value
 

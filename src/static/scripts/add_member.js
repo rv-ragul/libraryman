@@ -1,9 +1,5 @@
-const notify = (msg) => {
-    console.log(msg)
-}
-
 const add_member = () => {
-    const form = document.querySelector("form")
+    const form = document.querySelector("#Form")
     const name = form.name.value
     const phone = form.phone.value
     const address = form.address.value

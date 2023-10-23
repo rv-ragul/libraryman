@@ -1,11 +1,14 @@
 * Library management system
 
 ** views
+   - ( ) index page
 *** books
     - (x) /
+        - ( ) show quantity
     - (x) import
     - (x) issue
     - (x) return
+    - (x) get issued books
 *** members
     - (x) /
     - (x) add
@@ -18,6 +21,7 @@
     - (x) update password
 
 ** templates
+   - ( ) UI colors
 *** auth
     - (x) login
     - (x) register
@@ -25,7 +29,9 @@
     - (x) import
     - (x) view
     - (x) issue
+    - ( ) autofill issue
     - (x) return
+    - ( ) autofill return
 *** members
     - (x) add
     - (x) remove 

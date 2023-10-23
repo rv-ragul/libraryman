@@ -4,12 +4,13 @@
 <li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue Book</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return Book</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued Books</a></li>
 {% endblock %}
 
 {% block content %}
 <div>{% block title %}Import Books{% endblock %}</div>
-<section>
-    <form>
+<section id="Section">
+    <form id="Form">
         <label for="title">Title</label>
         <input type="text" name="title" class="input">
         <label for="authors">Authors</label>
