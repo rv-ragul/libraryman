@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block routes %}
+<li><a href="{{ url_for('books.import_books') }}">Import</a></li>
+<li><a href="{{ url_for('books.issue') }}">Issue</a></li>
+<li><a href="{{ url_for('books.return_book') }}">Return</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued List</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="title">{% block title %}View Books{% endblock %}</div>
+<form id="Form">
+    <label for="title">Title</label>
+    <input type="text" name="title" placeholder="Enter Book Title">
+    <label for="authors">Authors</label>
+    <input type="text" name="authors" placeholder="Enter Authors Name">
+    <button type="button" id="search">Search</button>
+    <button type="button" id="reset">Reset</button>
+</form>
+
+<section id="Section">
+    <table cellpadding="5">
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>ISBN Number</th>
+            <th>Publisher</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+        <tr id="{{ book.bookID }}">
+            <td>{{ book.bookID }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.publisher }}</td>
+            <td>
+                <div>
+                    <button onclick="issue_book({{ book.bookID }})" class="button">
+                        Issue
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %} {% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/view.css') }}" />
+{% endblock %} {% block scripts %}
+
+<script src="{{ url_for('static',filename='scripts/view_books.js') }}"></script>
+{% endblock %}

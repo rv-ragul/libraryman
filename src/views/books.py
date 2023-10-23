@@ -53,14 +53,12 @@ def issue():
     db = get_db()
     if request.method == "POST":
         book_id = request.form["book_id"]
-        user_name = request.form["user_name"]
-        book_name = request.form["book_name"]
-        book_author = request.form["book_author"]
+        memberID=request.form["memberID"]
 
         if not db.get(Book, book_id):
             return "Requested book doesn't exist in the Library", 400
         try:
-            db.add(Issued(book_id, user_name, book_name, book_author))
+            db.add(Issued(bookID=book_id,memberID=memberID))
             db.commit()
         except IntegrityError:
             db.rollback()
@@ -77,7 +75,7 @@ def issue():
 @login_required
 def return_book():
     if request.method == "POST":
-        book_id = request.form["book_id"]
+        bookID = request.form["book_id"]
         return_date = request.form["return_date"]
 
         fmt = "%a, %d %b %Y %H:%M:%S %Z"
@@ -86,7 +84,7 @@ def return_book():
 
         db = get_db()
         try:
-            issued_book = db.get(Issued, book_id)
+            issued_book = db.get(Issued, bookID)
             assert issued_book is not None
             issued_book.return_date = return_date  # type:ignore
             db.commit()

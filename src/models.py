@@ -1,7 +1,16 @@
 from typing import Dict
 
-from sqlalchemy import BigInteger, Column, Date, Float, Identity, Integer, String, func
-from sqlalchemy.types import TIMESTAMP
+from sqlalchemy import (
+    BigInteger,
+    Boolean,
+    Column,
+    Date,
+    Float,
+    Identity,
+    Integer,
+    String,
+    func,
+)
 
 from src.database import Base, engine
 
@@ -76,22 +85,17 @@ class Issued(Base):
     __tablename__ = "issued"
 
     bookID = Column(Integer, primary_key=True)
-    user_name = Column(String(50), nullable=False)
-    title = Column(String(80), nullable=False)
-    authors = Column(String(80), nullable=False)
-    issued_date = Column(
-        TIMESTAMP(timezone=True), nullable=False, server_default=func.now()
-    )
+    memberID = Column(Integer, primary_key=True)
+    issued_date = Column(Date, nullable=False, server_default=func.current_date())
     return_date = Column(Date)
+    rent_paid = Column(Boolean, nullable=False, server_default="false")
 
-    def __init__(self, bookID, user_name, title, authors) -> None:
+    def __init__(self, bookID, memberID) -> None:
         self.bookID = bookID
-        self.user_name = user_name
-        self.title = title
-        self.authors = authors
+        self.memberID = memberID
 
     def __repr__(self) -> str:
-        return f"<Issued {self.bookId, self.title !r}>"
+        return f"<Issued book {self.bookId} to {self.memberID}>"
 
 
 Base.metadata.create_all(bind=engine)
