@@ -1,6 +1,6 @@
 const login = (register) => {
     const form = document.querySelector("#Form")
-    const username = form.username.value
+    const username = form.userName.value
     const password = form.password.value
 
     if (!username || !password) {

@@ -1,18 +1,18 @@
 const issue_book = () => {
 
     const form = document.querySelector("#Form")
-    const book_id = form.book_id.value
-    const user_name = form.user_name.value
-    const book_name = form.book_name.value
-    const book_author = form.book_author.value
+    const bookID = form.bookID.value
+    const memberID = form.memberID.value
+    const title = form.title.value
+    const authors = form.authors.value
 
-    if (!book_id || !user_name || !book_name || !book_author) {
+    if (!bookID || !memberID || !title || !authors) {
         notify("All the fields are required")
         return
     }
 
     const formData = new FormData(form)
-    formData.append("book_id", book_id)
+    formData.append("bookID", bookID)
     fetch("http://localhost:5000/books/issue", {
         method: "POST",
         body: formData

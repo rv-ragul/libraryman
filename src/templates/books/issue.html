@@ -11,14 +11,14 @@
 <div>{% block title %}Issue Book{% endblock %}</div>
 <section id="Section">
     <form id="Form">
-        <label for="book_id">Book ID</label>
-        <input type="number" name="book_id" class="input" value="{{ book.bookID }}" {% if book %}disabled{% endif %}>
-        <label for="user_name">Username</label>
-        <input type="text" name="user_name" class="input" >
-        <label for="book_name">Book name</label>
-        <input type="text" name="book_name" class="input" value="{{ book.title }}">
-        <label for="book_author">Book Authors</label>
-        <input type="text" name="book_author" class="input" value="{{ book.authors }}">
+        <label for="bookID">Book ID</label>
+        <input type="number" name="bookID" class="input" value="{{ book.bookID }}" {% if book %}disabled{% endif %}>
+        <label for="memberID">Member ID</label>
+        <input type="number" name="memberID" class="input">
+        <label for="title">Book title</label>
+        <input type="text" name="title" class="input" value="{{ book.title }}">
+        <label for="authors">Book Authors</label>
+        <input type="text" name="authors" class="input" value="{{ book.authors }}">
         <input type="button" value="Submit" onclick="issue_book()" class="button">
     </form>
 </section>

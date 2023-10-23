@@ -74,7 +74,7 @@ def logout():
 @bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form["username"]
+        username = request.form["userName"]
         password = request.form["password"]
 
         try:
@@ -90,7 +90,7 @@ def register():
 @bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form["username"]
+        username = request.form["userName"]
         password = request.form["password"]
         error = None
         user: User | None = None

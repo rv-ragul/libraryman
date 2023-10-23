@@ -84,8 +84,9 @@ class Book(Base):
 class Issued(Base):
     __tablename__ = "issued"
 
-    bookID = Column(Integer, primary_key=True)
-    memberID = Column(Integer, primary_key=True)
+    id = Column(Integer, Identity(always=True), primary_key=True)
+    bookID = Column(Integer, nullable=False)
+    memberID = Column(Integer, nullable=False)
     issued_date = Column(Date, nullable=False, server_default=func.current_date())
     return_date = Column(Date)
     rent_paid = Column(Boolean, nullable=False, server_default="false")
