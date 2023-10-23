@@ -76,11 +76,10 @@ def update_member():
             db.rollback()
             return "some error", 400
 
-    member = None
-    if request.method == "GET":
+    elif request.method == "GET":
         id = request.args.get("id")
         member = db.get(Member, id)
-    return render_template("members/update.html", member=member)
+    return render_template("members/update.html", member=member)  # type:ignore
 
 
 @bp.delete("/<int:id>")
@@ -91,10 +90,15 @@ def remove_member(id):
     db = get_db()
     try:
         member = db.get(Member, id)
+        assert member is not None
+        # Have some dept, so dont remove
+        if member.dept != 0:  # type:ignore
+            return "", 450
         db.delete(member)
         db.commit()
+    except AssertionError:
+        return "Member doesn't exitst", 400
     except IntegrityError:
-        print("some error")
         db.rollback()
         return "", 400
 

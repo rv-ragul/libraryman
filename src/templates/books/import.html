@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block routes %}
-<li><a href="{{ url_for('books.view_books') }}">View Books</a></li>
-<li><a href="{{ url_for('books.issue') }}">Issue Book</a></li>
-<li><a href="{{ url_for('books.return_book') }}">Return Book</a></li>
-<li><a href="{{ url_for('books.get_issued_books') }}">Issued Books</a></li>
+<li><a href="{{ url_for('books.view_books') }}">View</a></li>
+<li><a href="{{ url_for('books.issue') }}">Issue</a></li>
+<li><a href="{{ url_for('books.return_book') }}">Return</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued List</a></li>
 {% endblock %}
 
 {% block content %}

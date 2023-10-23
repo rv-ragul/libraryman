@@ -31,19 +31,32 @@ def view_books():
         stmt = stmt.where(Book.authors.like(f"%{authors}%"))
 
     books = db.scalars(stmt).all()
-    return render_template("books/view.html", books=books)
+    return render_template("books/view_books.html", books=books)
+
+
+@bp.get("/issued")
+@login_required
+def get_issued_books():
+    """Get all the issued books"""
+
+    db = get_db()
+    stmt = select(Issued).where(Issued.return_date == None)
+    books = db.scalars(stmt).all()
+    return render_template("books/view_issued.html", books=books)
 
 
 @bp.route("/issue", methods=["GET", "POST"])
 @login_required
 def issue():
+    """Issue a book to a member"""
+
+    db = get_db()
     if request.method == "POST":
         book_id = request.form["book_id"]
         user_name = request.form["user_name"]
         book_name = request.form["book_name"]
         book_author = request.form["book_author"]
 
-        db = get_db()
         if not db.get(Book, book_id):
             return "Requested book doesn't exist in the Library", 400
         try:
@@ -54,7 +67,10 @@ def issue():
             return "This book already issued to someone", 400
 
         return "Book issued successfully!", 200
-    return render_template("books/issue.html")
+    elif request.method == "GET":
+        id = request.args.get("id")
+        book = db.get(Book, id)
+    return render_template("books/issue.html", book=book)  # type:ignore
 
 
 @bp.route("/return", methods=["GET", "POST"])

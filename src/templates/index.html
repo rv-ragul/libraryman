@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 
 {% block routes %}
-{% if session['username'] %}
 <li><a href="{{ url_for('books.view_books') }}">Books</a></li>
 <li><a href="{{ url_for('members.view_members') }}">Members</a></li>
-{% else %}
-<li><a href="{{ url_for('auth.register') }}">Register</a></li>
-<li><a href="{{ url_for('auth.login') }}">Login</a></li>
-{% endif %} {% endblock %}
+{% endblock %}
 
 {% block content %}
-<section>
+<section id="Section">
     <div>Login successfull!</div>
+    <div></div>
 </section>
 {% endblock %}

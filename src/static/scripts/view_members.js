@@ -5,7 +5,12 @@ const remove_member = (id) => {
         if (response.ok) {
             const member = document.getElementById(id)
             member.parentNode.removeChild(member)
+            notify()
         }
+        else {
+            notify()
+        }
+
     })
 }
 

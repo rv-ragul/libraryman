@@ -27,6 +27,7 @@ class Member(Base):
     name = Column(String(20), nullable=False)
     phone = Column(String(12), nullable=False)
     address = Column(String(80), nullable=False)
+    dept = Column(Integer, nullable=False, server_default="0")
 
     def __init__(self, name, phone, address) -> None:
         self.name = name
@@ -84,7 +85,7 @@ class Issued(Base):
     return_date = Column(Date)
 
     def __init__(self, bookID, user_name, title, authors) -> None:
-        self.bookId = bookID
+        self.bookID = bookID
         self.user_name = user_name
         self.title = title
         self.authors = authors
