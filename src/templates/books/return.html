@@ -11,10 +11,16 @@
 <div>{% block title %}Return Books{% endblock %}</div>
 <section id="Section">
     <form id="Form">
-        <label for="bookID">Bood Id</label>
-        <input type="text" name="bookID" class="input">
+        <label for="bookID">Bood ID</label>
+        <input type="text" name="bookID" class="input" value="{{ book.bookID }}" {% if book %}disabled{% endif %}>
+        <label for="memberID">Member ID</label>
+        <input type="text" name="memberID" class="input" value="{{ book.memberID }}" {% if book %}disabled{% endif %}>
         <label for="returnDate">Return Date</label>
-        <input type="date" name="returnDate" class="input">
+        <input type="date" name="returnDate" class="input" value="{{ today() }}">
+        <div>
+            <input type="checkbox" name="paid" class="input">
+            <label for="paid">Paid return charge</label>
+        </div>
         <input type="button" value="Return book" onclick="return_book()" class="button">
     </form>
 </section>

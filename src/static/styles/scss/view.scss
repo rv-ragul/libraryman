@@ -8,9 +8,11 @@
         height: 20px;
         width: 25%;
         padding: 5px 10px;
+        border: 2px solid #757575;
+        outline: none;
 
         &:focus {
-            border-style: none;
+            border: 2px solid rgb(0, 0, 255);
         }
     }
 
@@ -35,22 +37,21 @@
     overflow: scroll;
 
     table {
+        margin-top: 2em;
         width: 100%;
         text-align: left;
         border-collapse: collapse;
 
         tr {
-            border-bottom: 1px solid #000;
+            border-top: 1px solid #000;
 
             th {
                 text-align: left;
-                position: sticky;
-                top: 0;
-                background: #00bcd4;
-                color: #fff;
 
                 &:nth-child(1) {
-                    background: #03707d;
+                    text-align: center;
+                }
+                &:last-child {
                     text-align: center;
                 }
             }
@@ -59,8 +60,6 @@
                 text-align: left;
 
                 &:nth-child(1) {
-                    background: #00bcd4;
-                    color: #fff;
                     text-align: center;
                 }
 
@@ -89,4 +88,16 @@
 
 .remove {
     background-color: red;
+}
+
+.issue {
+    background-color: orange;
+}
+
+.return {
+    background-color: bisque;
+}
+
+.pay {
+    background-color: violet;
 }

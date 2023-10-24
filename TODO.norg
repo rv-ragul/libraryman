@@ -8,7 +8,9 @@
     - (x) import
     - (x) issue
     - (x) return
+        - (x) show rent
     - (x) get issued books
+        - (x) show number of days
 *** members
     - (x) /
     - (x) add
@@ -29,9 +31,9 @@
     - (x) import
     - (x) view
     - (x) issue
-    - ( ) autofill issue
+    - (x) autofill issue
     - (x) return
-    - ( ) autofill return
+    - (x) autofill return
 *** members
     - (x) add
     - (x) remove 

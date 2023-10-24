@@ -116,9 +116,11 @@ body #update > div > form {
 body #update > div > form > input {
   height: 2em;
   padding: 1% 2%;
+  border: 2px solid #757575;
+  outline: none;
 }
 body #update > div > form > input:focus {
-  border-style: none;
+  border: 2px solid rgb(0, 0, 255);
 }
 body #update > div > form > div {
   display: flex;

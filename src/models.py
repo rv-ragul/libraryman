@@ -6,6 +6,7 @@ from sqlalchemy import (
     Column,
     Date,
     Float,
+    ForeignKey,
     Identity,
     Integer,
     String,
@@ -85,8 +86,8 @@ class Issued(Base):
     __tablename__ = "issued"
 
     id = Column(Integer, Identity(always=True), primary_key=True)
-    bookID = Column(Integer, nullable=False)
-    memberID = Column(Integer, nullable=False)
+    bookID = Column(Integer, ForeignKey(Book.bookID), nullable=False)
+    memberID = Column(Integer, ForeignKey(Member.id), nullable=False)
     issued_date = Column(Date, nullable=False, server_default=func.current_date())
     return_date = Column(Date)
     rent_paid = Column(Boolean, nullable=False, server_default="false")
@@ -96,7 +97,7 @@ class Issued(Base):
         self.memberID = memberID
 
     def __repr__(self) -> str:
-        return f"<Issued book {self.bookId} to {self.memberID}>"
+        return f"<Issued book {self.bookID} to {self.memberID}>"
 
 
 Base.metadata.create_all(bind=engine)

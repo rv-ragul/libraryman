@@ -125,9 +125,11 @@ body {
                 & > input {
                     height: 2em;
                     padding: 1% 2%;
+                    border: 2px solid #757575;
+                    outline: none;
 
                     &:focus {
-                        border-style: none;
+                        border: 2px solid rgb(0, 0, 255);
                     }
                 }
                 & > div {

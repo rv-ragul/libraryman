@@ -1,11 +1,13 @@
-{% extends 'base.html' %} {% block routes %}
+{% extends 'base.html' %}
 
+{% block routes %}
 <li><a href="{{ url_for('books.import_books') }}">Import</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return</a></li>
+{% endblock %}
 
-{% endblock %} {% block content %}
+{% block content %}
 <div class="title">{% block title %}Issued Books{% endblock %}</div>
 <form id="Form">
     <label for="title">Title</label>
@@ -21,22 +23,28 @@
         <tr>
             <th>Book ID</th>
             <th>Title</th>
-            <th>Authors</th>
             <th>Member</th>
-            <th>Issued date (YYYY-MM-DD)</th>
+            <th>Issued date</th>
+            <th>Days</th>
             <th>Actions</th>
         </tr>
         {% for book in books %}
-        <tr id="{{ book.bookID }}">
-            <td>{{ book.bookID }}</td>
-            <td>{{ book.title }}</td>
-            <td>{{ book.authors }}</td>
-            <td>{{ book.user_name }}</td>
-            <td>{{ book.issued_date  }}</td>
+        <tr id="{{ book.id }}">
+            <td>{{ book.bookID }}</td> <!-- bookID -->
+            <td>{{ book.bookID | book_title }}</td> <!-- title -->
+            <td>{{ book.memberID | member_name }}</td> <!-- member -->
+            <td>{{ book.issued_date }}</td> <!-- issued_date -->
+            <td>{{ book.issued_date | days_since_issued }}</td> <!-- days_since_issued -->
             <td>
-                <button onclick="return_book({{ book.bookID }})" class="button">
-                    Return
-                </button>
+                <div>
+                    {% if book.return_date %}
+                    <button class="button pay">Pay rent</button>
+                    {% else %}
+                    <button onclick="return_book({{ book.id }})" class="button return">
+                        Return
+                    </button>
+                    {% endif %}
+                </div>
             </td>
         </tr>
         {% endfor %}

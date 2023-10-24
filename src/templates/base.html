@@ -11,7 +11,9 @@
         <div><a href="{{ url_for('index') }}">Library Management System</a></div>
         <ul>
             {% block routes %}{% endblock %}
-            <li onclick="toggleDropdown()">ragul</li>
+            <li onclick="toggleDropdown()" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                <img src="{{ url_for('static',filename='profile.svg') }}" alt="profile">
+            </li>
         </ul>
         <span id="dropdown" style="display: none;">
             <ul>

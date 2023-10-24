@@ -1,5 +1,5 @@
-const return_book = () => {
-
+const return_book = (id) => {
+    location.href = "http://localhost:5000/books/return?id=" + id
 }
 
 // Search books based on title and authors

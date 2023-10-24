@@ -3,7 +3,7 @@ from typing import Dict
 
 from flask import Blueprint, json, render_template, request
 import httpx
-from sqlalchemy import select
+from sqlalchemy import and_, or_, select
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
@@ -40,7 +40,10 @@ def get_issued_books():
     """Get all the issued books"""
 
     db = get_db()
-    stmt = select(Issued).where(Issued.return_date == None)
+    stmt = select(Issued).where(
+        or_(Issued.return_date == None, Issued.rent_paid == False)
+    )
+    print(stmt)
     books = db.scalars(stmt).all()
     return render_template("books/view_issued.html", books=books)
 
@@ -52,13 +55,13 @@ def issue():
 
     db = get_db()
     if request.method == "POST":
-        book_id = request.form["bookID"]
+        bookID = request.form["bookID"]
         memberID = request.form["memberID"]
 
-        if not db.get(Book, book_id):
+        if not db.get(Book, bookID):
             return "Requested book doesn't exist in the Library", 400
         try:
-            db.add(Issued(bookID=book_id, memberID=memberID))
+            db.add(Issued(bookID=bookID, memberID=memberID))
             db.commit()
         except IntegrityError:
             db.rollback()
@@ -74,28 +77,37 @@ def issue():
 @bp.route("/return", methods=["GET", "POST"])
 @login_required
 def return_book():
+    """Issue a book return"""
+
+    db = get_db()
     if request.method == "POST":
         bookID = request.form["bookID"]
-        return_date = request.form["returnDate"]
+        memberID = request.form["memberID"]
+        returnDate = request.form["returnDate"]
 
         fmt = "%a, %d %b %Y %H:%M:%S %Z"
-        return_date = datetime.strptime(return_date, fmt)
-        return_date = date(return_date.year, return_date.month, return_date.day)
+        returnDate = datetime.strptime(returnDate, fmt)
+        returnDate = date(returnDate.year, returnDate.month, returnDate.day)
 
-        db = get_db()
         try:
-            issued_book = db.get(Issued, bookID)
+            stmt = select(Issued).where(
+                and_(Issued.bookID == bookID, Issued.memberID == memberID)
+            )
+            issued_book = db.scalars(stmt).one_or_none()
             assert issued_book is not None
-            issued_book.return_date = return_date  # type:ignore
+            issued_book.return_date = returnDate  # type:ignore
             db.commit()
         except IntegrityError:
             db.rollback()
-            return "Can't return the book", 400
+            return "Can't return the book", 450
         except AssertionError:
-            return "Book with given ID is not issued", 400
+            return "Book with given ID is not issued", 450
 
         return "Book returned successfully!"
-    return render_template("books/return.html")
+    elif request.method == "GET":
+        id = request.args.get("id")
+        book = db.get(Issued, id)
+    return render_template("books/return.html", book=book)  # type:ignore
 
 
 @bp.route("/import", methods=["GET", "POST"])
