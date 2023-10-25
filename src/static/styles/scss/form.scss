@@ -12,30 +12,30 @@
         align-items: left;
         width: 30%;
         gap: 15px;
-    }
-}
 
-.input {
-    height: 1.5em;
-    padding: 1% 2%;
-    border: 2px solid #757575;
-    outline: none;
+        .input {
+            height: 1.5em;
+            padding: 1% 2%;
+            border: 2px solid #757575;
+            outline: none;
 
-    &:focus {
-        border: 2px solid rgb(0, 0, 255);
-    }
-}
+            &:focus {
+                border: 2px solid rgb(0, 0, 255);
+            }
+        }
 
-.button {
-    display: flex;
-    flex-direction: row;
-    align-self: flex-end;
-    border: none;
-    border-radius: 10%;
-    padding: 5px 10px;
-    font-size: 1em;
+        .button {
+            display: flex;
+            flex-direction: row;
+            align-self: flex-end;
+            border: none;
+            border-radius: 10%;
+            padding: 5px 10px;
+            font-size: 1em;
 
-    &:hover {
-        cursor: pointer;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 }

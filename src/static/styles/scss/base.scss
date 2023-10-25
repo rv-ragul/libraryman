@@ -1,3 +1,6 @@
+$dropdownColor: #bde0fe;
+$dropdownHighlight: #3a86ff;
+
 body {
     display: flex;
     flex-direction: column;
@@ -43,11 +46,12 @@ body {
                 }
             }
         }
-        span {
-            background-color: gray;
+        #dropdown {
+            background-color: $dropdownColor;
             position: absolute;
             right: 20px;
             top: 60px;
+            border-radius: 2%;
 
             &::before {
                 content: "";
@@ -57,7 +61,7 @@ body {
                 width: 15px;
                 height: 15px;
                 z-index: -1;
-                background-color: gray;
+                background-color: $dropdownColor;
                 transform: rotate(45deg);
             }
 
@@ -81,7 +85,8 @@ body {
                     }
                     &:hover:not(:first-child) {
                         cursor: pointer;
-                        background-color: blue;
+                        background-color: $dropdownHighlight;
+                        border-radius: 4%;
                     }
                 }
             }

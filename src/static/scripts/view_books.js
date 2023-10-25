@@ -44,5 +44,5 @@ btnSearch.addEventListener("click", () => {
 })
 
 btnReset.addEventListener("click", () => {
-    location.href = "http://localhost:5000/books/"
+    location.search = ""
 })

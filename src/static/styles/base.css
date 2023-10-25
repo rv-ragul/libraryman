@@ -41,13 +41,14 @@ body > nav > ul li > a {
 body > nav > ul li:hover {
   cursor: pointer;
 }
-body > nav span {
-  background-color: gray;
+body > nav #dropdown {
+  background-color: #bde0fe;
   position: absolute;
   right: 20px;
   top: 60px;
+  border-radius: 2%;
 }
-body > nav span::before {
+body > nav #dropdown::before {
   content: "";
   position: absolute;
   top: -6px;
@@ -55,30 +56,31 @@ body > nav span::before {
   width: 15px;
   height: 15px;
   z-index: -1;
-  background-color: gray;
+  background-color: #bde0fe;
   transform: rotate(45deg);
 }
-body > nav span ul {
+body > nav #dropdown ul {
   display: flex;
   flex-direction: column;
   padding: 5px;
   gap: 5px;
   margin: 0;
 }
-body > nav span ul li {
+body > nav #dropdown ul li {
   list-style: none;
   text-decoration: none;
   display: flex;
   justify-content: center;
   padding: 0 5px;
 }
-body > nav span ul li > a {
+body > nav #dropdown ul li > a {
   text-decoration-line: none;
   color: black;
 }
-body > nav span ul li:hover:not(:first-child) {
+body > nav #dropdown ul li:hover:not(:first-child) {
   cursor: pointer;
-  background-color: blue;
+  background-color: #3a86ff;
+  border-radius: 4%;
 }
 body #update {
   background-color: rgba(0, 0, 0, 0.5);

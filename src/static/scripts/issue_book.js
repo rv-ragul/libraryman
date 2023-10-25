@@ -18,7 +18,7 @@ const issue_book = () => {
         body: formData
     }).then(async (response) => {
         if (response.ok) {
-            location.href = "http://localhost:5000/books/issue"
+            location.search = ""
         }
     })
 }

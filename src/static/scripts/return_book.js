@@ -3,6 +3,7 @@ const return_book = () => {
     const bookID = form.bookID.value
     const memberID = form.memberID.value
     const _returnDate = form.returnDate.value
+    const paid = form.querySelector("[name=paid]")
 
     if (!bookID || !memberID || !_returnDate) {
         notify("All fields are required")
@@ -14,12 +15,15 @@ const return_book = () => {
     formData.append("bookID", bookID)
     formData.append("memberID", memberID)
     formData.append("returnDate", returnDate.toUTCString())
+    if (paid.checked) {
+        formData.append("paid", "true")
+    }
     fetch("http://localhost:5000/books/return", {
         method: "POST",
         body: formData
     }).then((response) => {
         if (response.ok) {
-            location.href = "http://localhost:5000/books/return"
+            location.search = ""
         }
     })
 }

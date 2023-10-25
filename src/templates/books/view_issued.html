@@ -12,42 +12,48 @@
 <form id="Form">
     <label for="title">Title</label>
     <input type="text" name="title" placeholder="Enter Book Title">
-    <label for="authors">Authors</label>
-    <input type="text" name="authors" placeholder="Enter Authors Name">
+    <label for="memberID">Member ID</label>
+    <input type="text" name="memberID" placeholder="Enter Member ID">
     <button type="button" id="search">Search</button>
     <button type="button" id="reset">Reset</button>
 </form>
 
 <section id="Section">
     <table cellpadding="5">
-        <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Member</th>
-            <th>Issued date</th>
-            <th>Days</th>
-            <th>Actions</th>
-        </tr>
-        {% for book in books %}
-        <tr id="{{ book.id }}">
-            <td>{{ book.bookID }}</td> <!-- bookID -->
-            <td>{{ book.bookID | book_title }}</td> <!-- title -->
-            <td>{{ book.memberID | member_name }}</td> <!-- member -->
-            <td>{{ book.issued_date }}</td> <!-- issued_date -->
-            <td>{{ book.issued_date | days_since_issued }}</td> <!-- days_since_issued -->
-            <td>
-                <div>
-                    {% if book.return_date %}
-                    <button class="button pay">Pay rent</button>
-                    {% else %}
-                    <button onclick="return_book({{ book.id }})" class="button return">
-                        Return
-                    </button>
-                    {% endif %}
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>BookID</th>
+                <th>Title</th>
+                <th>Member ID</th>
+                <th>Member</th>
+                <th>Issued date</th>
+                <th>Days</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr id="{{ book.id }}">
+                <td>{{ book.bookID }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.memberID }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.issued_date }}</td>
+                <td>{{ book.issued_date | days_since_issued }}</td>
+                <td>
+                    <div>
+                        {% if book.return_date %}
+                        <button class="button pay" onclick="return_book({{ book.id }})">Pay rent</button>
+                        {% else %}
+                        <button onclick="return_book({{ book.id }})" class="button return">
+                            Return
+                        </button>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </section>
 

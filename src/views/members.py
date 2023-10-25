@@ -77,8 +77,10 @@ def update_member():
             return "some error", 400
 
     elif request.method == "GET":
+        member=None
         id = request.args.get("id")
-        member = db.get(Member, id)
+        if id:
+            member = db.get(Member, id)
     return render_template("members/update.html", member=member)  # type:ignore
 
 

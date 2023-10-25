@@ -7,7 +7,7 @@ from sqlalchemy import and_, or_, select
 from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
-from src.models import Book, Issued
+from src.models import Book, Issued, Member
 
 from .auth import login_required
 
@@ -39,12 +39,24 @@ def view_books():
 def get_issued_books():
     """Get all the issued books"""
 
+    title = request.args.get("title")
+    memberID = request.args.get("memberID")
+
     db = get_db()
-    stmt = select(Issued).where(
-        or_(Issued.return_date == None, Issued.rent_paid == False)
+    stmt = (
+        select(Issued.id, Issued.issued_date, Issued.return_date, Issued.rent_paid)
+        .where(or_(Issued.return_date == None, Issued.rent_paid == False))
+        .add_columns(Book.bookID, Book.title, Member.id.label("memberID"), Member.name)
+        .join(Member)
+        .join(Book)
     )
-    print(stmt)
-    books = db.scalars(stmt).all()
+
+    if title:
+        stmt = stmt.where(Book.title.like(f"%{title}%"))
+    if memberID:
+        stmt = stmt.where(Member.id == memberID)
+
+    books = db.execute(stmt).all()
     return render_template("books/view_issued.html", books=books)
 
 
@@ -69,8 +81,10 @@ def issue():
 
         return "Book issued successfully!", 200
     elif request.method == "GET":
+        book = None
         id = request.args.get("id")
-        book = db.get(Book, id)
+        if id:
+            book = db.get(Book, id)
     return render_template("books/issue.html", book=book)  # type:ignore
 
 
@@ -85,17 +99,28 @@ def return_book():
         memberID = request.form["memberID"]
         returnDate = request.form["returnDate"]
 
+        paid = request.form.get("paid")
+
         fmt = "%a, %d %b %Y %H:%M:%S %Z"
         returnDate = datetime.strptime(returnDate, fmt)
         returnDate = date(returnDate.year, returnDate.month, returnDate.day)
 
         try:
+            # update return date
             stmt = select(Issued).where(
                 and_(Issued.bookID == bookID, Issued.memberID == memberID)
             )
             issued_book = db.scalars(stmt).one_or_none()
             assert issued_book is not None
             issued_book.return_date = returnDate  # type:ignore
+
+            # update dept
+            if not paid:
+                member = db.get(Member, memberID)
+                assert member is not None
+                member.dept += (date.today() - issued_book.issued_date).days
+            else:
+                issued_book.rent_paid = True  # type:ignore
             db.commit()
         except IntegrityError:
             db.rollback()
@@ -105,8 +130,10 @@ def return_book():
 
         return "Book returned successfully!"
     elif request.method == "GET":
+        book = None
         id = request.args.get("id")
-        book = db.get(Issued, id)
+        if id:
+            book = db.get(Issued, id)
     return render_template("books/return.html", book=book)  # type:ignore
 
 

@@ -21,7 +21,7 @@ const showChangeForm = () => {
     updateSection.style.display = "flex"
 }
 
-const cancel = () => {
+const cancelUpdate = () => {
     const updateSection = document.querySelector("#update")
     updateSection.style.display = "none"
 }
@@ -49,13 +49,14 @@ const changePassword = () => {
         if (response.ok) {
             notify("Password updated successfully!")
             form.reset()
-            cancel()
+            cancelUpdate()
         }
     })
 }
 
-window.addEventListener("keydown", (event) => {
+document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
-        cancel()
+        cancelUpdate()
     }
 })
+

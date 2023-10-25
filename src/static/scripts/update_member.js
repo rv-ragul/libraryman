@@ -16,7 +16,7 @@ const update_member = () => {
         body: formData
     }).then(async (response) => {
         if (response.ok) {
-            location.href = "http://localhost:5000/members/update"
+            location.search = ""
         }
     })
 }
