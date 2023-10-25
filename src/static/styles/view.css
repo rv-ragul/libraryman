@@ -43,6 +43,7 @@
 }
 #Section table tr th {
   text-align: left;
+  vertical-align: top;
 }
 #Section table tr th:nth-child(1) {
   text-align: center;
@@ -53,7 +54,7 @@
 #Section table tr td {
   text-align: left;
 }
-#Section table tr td:nth-child(1) {
+#Section table tr td:nth-child(1), #Section table tr td:nth-child(6) {
   text-align: center;
 }
 #Section table tr td:last-child div {
@@ -69,6 +70,9 @@
   border-radius: 10%;
   padding: 5px 10px;
   cursor: pointer;
+}
+.button:disabled {
+  cursor: disabled;
 }
 
 .update {

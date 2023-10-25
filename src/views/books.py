@@ -3,8 +3,9 @@ from typing import Dict
 
 from flask import Blueprint, json, render_template, request
 import httpx
-from sqlalchemy import and_, or_, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.dialects.postgresql import insert
 
 from src.database import get_db
 from src.models import Book, Issued, Member
@@ -23,14 +24,17 @@ def view_books():
     authors = request.args.get("authors")
 
     db = get_db()
-    stmt = select(Book)
-
+    stmt = (
+        select(Book, Book.total - func.count(Issued.bookID))
+        .join(Issued, Book.bookID == Issued.bookID, isouter=True)
+        .group_by(Book.bookID)
+    )
     if title:
         stmt = stmt.where(Book.title.like(f"%{title}%"))
     if authors:
         stmt = stmt.where(Book.authors.like(f"%{authors}%"))
 
-    books = db.scalars(stmt).all()
+    books = db.execute(stmt).all()
     return render_template("books/view_books.html", books=books)
 
 
@@ -147,14 +151,23 @@ def import_books():
         params = {key: value for key, value in form.items() if form.get(key)}
         db = get_db()
 
-        with httpx.Client() as client:
-            res = client.get(
-                "https://frappe.io/api/method/frappe-library", params=params
-            ).text
-            _books: Dict = json.loads(res)
-            books = _books.get("message")
-            assert books is not None
-            db.add_all([Book(book) for book in books])
-            db.commit()
+        try:
+            with httpx.Client() as client:
+                res = client.get(
+                    "https://frappe.io/api/method/frappe-library", params=params
+                ).json()
+                books = res.get("message")
+                assert books is not None
+                for book in books:
+                    book["num_pages"] = book.pop("  num_pages")
+                    stmt = insert(Book).values(book)
+                    stmt = stmt.on_conflict_do_update(
+                        constraint="books_pkey",
+                        set_=dict(total=stmt.excluded.get("total") + 1),  # type:ignore
+                    )
+                    db.execute(stmt)
+                db.commit()
+        except AssertionError:
+            return "API error", 450
 
     return render_template("books/import.html")

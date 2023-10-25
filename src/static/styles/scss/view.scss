@@ -47,6 +47,7 @@
 
             th {
                 text-align: left;
+                vertical-align: top;
 
                 &:nth-child(1) {
                     text-align: center;
@@ -59,7 +60,8 @@
             td {
                 text-align: left;
 
-                &:nth-child(1) {
+                &:nth-child(1),
+                &:nth-child(6) {
                     text-align: center;
                 }
 
@@ -80,6 +82,10 @@
     border-radius: 10%;
     padding: 5px 10px;
     cursor: pointer;
+
+    &:disabled {
+        cursor: disabled;
+    }
 }
 
 .update {

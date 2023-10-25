@@ -4,7 +4,7 @@
 <li><a href="{{ url_for('books.import_books') }}">Import</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue</a></li>
-<li><a href="{{ url_for('books.get_issued_books') }}">Issued List</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued Books</a></li>
 {% endblock %}
 
 {% block content %}
@@ -12,11 +12,12 @@
 <section id="Section">
     <form id="Form">
         <label for="bookID">Bood ID</label>
-        <input type="text" name="bookID" class="input" value="{{ book.bookID }}" {% if book %}disabled{% endif %}>
+        <input type="text" name="bookID" class="input" {% if book %} value="{{ book.bookID }}" disabled {% endif %}>
         <label for="memberID">Member ID</label>
-        <input type="text" name="memberID" class="input" value="{{ book.memberID }}" {% if book %}disabled{% endif %}>
+        <input type="text" name="memberID" class="input" {% if book %} value="{{ book.memberID }}" disabled {% endif %}>
         <label for="returnDate">Return Date</label>
-        <input type="date" name="returnDate" class="input" value="{{ today() }}">
+        <input type="date" name="returnDate" class="input" {% if book.return_date %} value="{{ book.return_date }}" disabled {%
+            else %} value="{{ today() }}" {% endif %}>
         <div>
             <input type="checkbox" name="paid" class="input">
             <label for="paid">Paid return charge</label>

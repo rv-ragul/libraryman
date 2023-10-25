@@ -63,6 +63,7 @@ class Book(Base):
     text_reviews_count = Column(Integer, nullable=False)
     publication_date = Column(String(10), nullable=False)
     publisher = Column(String(100), nullable=False)
+    total = Column(Integer, nullable=False, server_default="1")
 
     def __init__(self, book: Dict) -> None:
         self.bookID = book["bookID"]

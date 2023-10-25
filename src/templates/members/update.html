@@ -13,13 +13,13 @@
 <section id="Section">
     <form id="Form">
         <label for="id">ID</label>
-        <input type="number" name="id" class="input" value="{{ member.id }}" {% if member %}disabled{% endif %}>
+        <input type="number" name="id" class="input" {% if member %} value="{{ member.id }}" disabled{% endif %}>
         <label for="name">Name</label>
-        <input type="text" name="name" class="input" value="{{ member.name }}">
+        <input type="text" name="name" class="input" {% if member %} value="{{ member.name }}" disabled {% endif %}>
         <label for="phone">Phone</label>
-        <input type="text" name="phone" class="input" value="{{ member.phone }}">
+        <input type="text" name="phone" class="input" {% if member %} value="{{ member.phone }}" disabled {% endif %}>
         <label for="address">Address</label>
-        <input type="text" name="address" class="input" value="{{ member.address }}">
+        <input type="text" name="address" class="input" {% if member %}value="{{ member.address }}" disabled{% endif %}>
         <input type="button" value="Update" onclick="update_member()" class="button">
     </form>
 </section>

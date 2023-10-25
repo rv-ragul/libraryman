@@ -4,7 +4,7 @@
 <li><a href="{{ url_for('books.import_books') }}">Import</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return</a></li>
-<li><a href="{{ url_for('books.get_issued_books') }}">Issued List</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued Books</a></li>
 {% endblock %}
 
 {% block content %}
@@ -12,13 +12,13 @@
 <section id="Section">
     <form id="Form">
         <label for="bookID">Book ID</label>
-        <input type="number" name="bookID" class="input" value="{{ book.bookID }}" {% if book %}disabled{% endif %}>
+        <input type="number" name="bookID" class="input" {% if book %} value="{{ book.bookID }}" disabled{% endif %}>
         <label for="memberID">Member ID</label>
         <input type="number" name="memberID" class="input">
         <label for="title">Book title</label>
-        <input type="text" name="title" class="input" value="{{ book.title }}">
+        <input type="text" name="title" class="input" {% if book %} value="{{ book.title }}" disabled {% endif %}>
         <label for="authors">Book Authors</label>
-        <input type="text" name="authors" class="input" value="{{ book.authors }}">
+        <input type="text" name="authors" class="input" {% if book %} value="{{ book.authors }}" disabled {% endif %}>
         <input type="button" value="Submit" onclick="issue_book()" class="button">
     </form>
 </section>

@@ -4,7 +4,7 @@
 <li><a href="{{ url_for('books.import_books') }}">Import</a></li>
 <li><a href="{{ url_for('books.issue') }}">Issue</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return</a></li>
-<li><a href="{{ url_for('books.get_issued_books') }}">Issued List</a></li>
+<li><a href="{{ url_for('books.get_issued_books') }}">Issued Books</a></li>
 {% endblock %}
 
 {% block content %}
@@ -20,30 +20,37 @@
 
 <section id="Section">
     <table cellpadding="5">
-        <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Authors</th>
-            <th>ISBN Number</th>
-            <th>Publisher</th>
-            <th>Actions</th>
-        </tr>
-        {% for book in books %}
-        <tr id="{{ book.bookID }}">
-            <td>{{ book.bookID }}</td>
-            <td>{{ book.title }}</td>
-            <td>{{ book.authors }}</td>
-            <td>{{ book.isbn }}</td>
-            <td>{{ book.publisher }}</td>
-            <td>
-                <div>
-                    <button onclick="issue_book({{ book.bookID }})" class="button issue">
-                        Issue
-                    </button>
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>ISBN Number</th>
+                <th>Publisher</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr id="{{ book[0].bookID }}">
+                <td>{{ book[0].bookID }}</td>
+                <td>{{ book[0].title }}</td>
+                <td>{{ book[0].authors }}</td>
+                <td>{{ book[0].isbn }}</td>
+                <td>{{ book[0].publisher }}</td>
+                <td>{{ book[1] }}</td>
+                <td>
+                    <div>
+                        <button onclick="issue_book({{ book[0].bookID }})" class="button issue" {% if book[1] < 1 %}
+                            disabled {% endif %}>
+                            Issue
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </section>
 
