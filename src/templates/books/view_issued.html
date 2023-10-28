@@ -39,7 +39,7 @@
                 <td>{{ book.memberID }}</td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.issued_date }}</td>
-                <td>{{ book.issued_date | days_since_issued }}</td>
+                <td>{{ book.days }}</td>
                 <td>
                     <div>
                         {% if book.return_date %}

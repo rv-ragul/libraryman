@@ -1,11 +1,10 @@
 from datetime import date, datetime
-from typing import Dict
 
-from flask import Blueprint, json, render_template, request
+from flask import Blueprint, render_template, request
 import httpx
 from sqlalchemy import and_, func, or_, select
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.exc import IntegrityError
 
 from src.database import get_db
 from src.models import Book, Issued, Member
@@ -29,6 +28,7 @@ def view_books():
         .join(Issued, Book.bookID == Issued.bookID, isouter=True)
         .group_by(Book.bookID)
     )
+
     if title:
         stmt = stmt.where(Book.title.like(f"%{title}%"))
     if authors:
@@ -48,7 +48,13 @@ def get_issued_books():
 
     db = get_db()
     stmt = (
-        select(Issued.id, Issued.issued_date, Issued.return_date, Issued.rent_paid)
+        select(
+            Issued.id,
+            Issued.issued_date,
+            Issued.return_date,
+            Issued.rent_paid,
+            (func.current_date() - Issued.issued_date).label("days"),
+        )
         .where(or_(Issued.return_date == None, Issued.rent_paid == False))
         .add_columns(Book.bookID, Book.title, Member.id.label("memberID"), Member.name)
         .join(Member)
@@ -89,7 +95,7 @@ def issue():
         id = request.args.get("id")
         if id:
             book = db.get(Book, id)
-    return render_template("books/issue.html", book=book)  # type:ignore
+    return render_template("books/issue.html", book=book)
 
 
 @bp.route("/return", methods=["GET", "POST"])
