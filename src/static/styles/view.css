@@ -15,14 +15,16 @@
   border: 2px solid rgb(0, 0, 255);
 }
 #Form button {
-  color: blue;
+  background-color: #e3e9f4;
+  color: black;
   padding: 5px 10px;
-  border-color: blue;
+  border: 1px solid #e3e9f4;
   border-radius: 10%;
-  border-width: 1px;
+  box-shadow: 1px 1px 2px grey;
 }
 #Form button:hover {
   cursor: pointer;
+  box-shadow: 2px 2px 6px grey;
 }
 
 #Section {
@@ -72,27 +74,33 @@
   cursor: pointer;
 }
 .button:disabled {
-  cursor: disabled;
+  cursor: not-allowed;
+  color: black;
+  background-color: #e3e9f4;
+}
+.button:hover:not(:disabled) {
+  box-shadow: 2px 2px 6px grey;
 }
 
 .update {
-  background-color: blue;
+  background-color: #0069e0;
+  color: white;
 }
 
 .remove {
-  background-color: red;
+  background-color: #f95959;
+  color: white;
 }
 
-.issue {
-  background-color: orange;
-}
-
+.issue,
 .return {
-  background-color: bisque;
+  background-color: #0069e0;
+  color: white;
 }
 
 .pay {
-  background-color: violet;
+  background-color: #93e7fb;
+  color: white;
 }
 
 /*# sourceMappingURL=view.css.map */

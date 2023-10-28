@@ -1,3 +1,5 @@
+@use "theme";
+
 #Form {
     display: flex;
     justify-content: center;
@@ -8,7 +10,7 @@
         height: 20px;
         width: 25%;
         padding: 5px 10px;
-        border: 2px solid #757575;
+        border: 2px solid theme.$inputBorderColor;
         outline: none;
 
         &:focus {
@@ -17,14 +19,16 @@
     }
 
     button {
-        color: blue;
+        background-color: theme.$base-300;
+        color: black;
         padding: 5px 10px;
-        border-color: blue;
+        border: 1px solid theme.$base-300;
         border-radius: 10%;
-        border-width: 1px;
+        box-shadow: 1px 1px 2px grey;
 
         &:hover {
             cursor: pointer;
+            box-shadow: 2px 2px 6px grey;
         }
     }
 }
@@ -84,26 +88,34 @@
     cursor: pointer;
 
     &:disabled {
-        cursor: disabled;
+        cursor: not-allowed;
+        color: black;
+        background-color: theme.$base-300;
+    }
+    &:hover:not(:disabled) {
+        box-shadow: 2px 2px 6px grey;
     }
 }
 
+// members
 .update {
-    background-color: blue;
+    background-color: theme.$primary-focus;
+    color: white;
 }
 
 .remove {
-    background-color: red;
+    background-color:theme.$error;
+    color:white;
 }
 
-.issue {
-    background-color: orange;
-}
-
+// books
+.issue,
 .return {
-    background-color: bisque;
+    background-color: theme.$primary-focus;
+    color: white;
 }
 
 .pay {
-    background-color: violet;
+    background-color: theme.$info;
+    color: white;
 }

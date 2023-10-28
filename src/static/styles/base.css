@@ -10,7 +10,8 @@ body > nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: paleturquoise;
+  background-color: #463aa2;
+  color: white;
   padding: 10px;
   height: fit-content;
 }
@@ -37,12 +38,18 @@ body > nav > ul li {
 }
 body > nav > ul li > a {
   text-decoration-line: none;
+  color: inherit;
 }
 body > nav > ul li:hover {
   cursor: pointer;
 }
+body > nav > ul li:hover:not(:last-child) {
+  border-radius: 5%;
+  background-color: #0069e0;
+}
 body > nav #dropdown {
-  background-color: #bde0fe;
+  background-color: #dbd4ed;
+  color: black;
   position: absolute;
   right: 20px;
   top: 60px;
@@ -56,7 +63,7 @@ body > nav #dropdown::before {
   width: 15px;
   height: 15px;
   z-index: -1;
-  background-color: #bde0fe;
+  background-color: inherit;
   transform: rotate(45deg);
 }
 body > nav #dropdown ul {
@@ -75,12 +82,13 @@ body > nav #dropdown ul li {
 }
 body > nav #dropdown ul li > a {
   text-decoration-line: none;
-  color: black;
+  color: inherit;
 }
 body > nav #dropdown ul li:hover:not(:first-child) {
   cursor: pointer;
-  background-color: #3a86ff;
-  border-radius: 4%;
+  background-color: #047aff;
+  border-radius: 5%;
+  color: white;
 }
 body #update {
   background-color: rgba(0, 0, 0, 0.5);
@@ -96,7 +104,7 @@ body #update {
   align-items: center;
 }
 body #update > div {
-  background-color: aqua;
+  background-color: #dbd4ed;
   padding: 2em 2.5em;
   border-radius: 2%;
 }
@@ -135,9 +143,18 @@ body #update > div > form > div > button {
   border-radius: 10%;
   padding: 5px 10px;
   font-size: 1em;
+  border: none;
+  color: black;
 }
 body #update > div > form > div > button:hover {
   cursor: pointer;
+  box-shadow: 2px 2px 6px grey;
+}
+body #update > div > form > div .update {
+  background-color: #81cfd1;
+}
+body #update > div > form > div .cancel {
+  background-color: #e3e9f4;
 }
 body main {
   width: 100%;

@@ -30,9 +30,13 @@
   border-radius: 10%;
   padding: 5px 10px;
   font-size: 1em;
+  border-color: #e3e9f4;
+  color: black;
+  background-color: #e3e9f4;
 }
 #Section #Form .button:hover {
   cursor: pointer;
+  box-shadow: 2px 2px 6px grey;
 }
 
 /*# sourceMappingURL=form.css.map */
