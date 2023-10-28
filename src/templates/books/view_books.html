@@ -33,16 +33,16 @@
         </thead>
         <tbody>
             {% for book in books %}
-            <tr id="{{ book[0].bookID }}">
-                <td>{{ book[0].bookID }}</td>
-                <td>{{ book[0].title }}</td>
-                <td>{{ book[0].authors }}</td>
-                <td>{{ book[0].isbn }}</td>
-                <td>{{ book[0].publisher }}</td>
-                <td>{{ book[1] }}</td>
+            <tr id="{{ book.bookID }}">
+                <td>{{ book.bookID }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.authors }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.available }}</td>
                 <td>
                     <div>
-                        <button onclick="issue_book({{ book[0].bookID }})" class="button issue" {% if book[1] < 1 %}
+                        <button onclick="issue_book({{ book.bookID }})" class="button issue" {% if book.available < 1 %}
                             disabled {% endif %}>
                             Issue
                         </button>

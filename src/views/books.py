@@ -5,6 +5,7 @@ import httpx
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql.functions import count
 
 from src.database import get_db
 from src.models import Book, Issued, Member
@@ -24,8 +25,9 @@ def view_books():
 
     db = get_db()
     stmt = (
-        select(Book, Book.total - func.count(Issued.bookID))
-        .join(Issued, Book.bookID == Issued.bookID, isouter=True)
+        select(Book.bookID, Book.title, Book.authors, Book.isbn, Book.publisher)
+        .add_columns((Book.total - func.count(Issued.bookID)).label("available"))
+        .join(Issued, Issued.bookID == Book.bookID, isouter=True)
         .group_by(Book.bookID)
     )
 
