@@ -85,11 +85,18 @@ def issue():
         if not db.get(Book, bookID):
             return "Requested book doesn't exist in the Library", 400
         try:
+            stmt = select(Issued).where(
+                and_(Issued.bookID == bookID, Issued.memberID == memberID)
+            )
+            already_issued = db.scalars(stmt).one_or_none()
+            assert already_issued is None
             db.add(Issued(bookID=bookID, memberID=memberID))
             db.commit()
+        except AssertionError:
+            return "Only one copy can be issued to a person", 450
         except IntegrityError:
             db.rollback()
-            return "This book already issued to someone", 400
+            return "This book already issued to someone", 450
 
         return "Book issued successfully!", 200
     elif request.method == "GET":

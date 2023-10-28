@@ -4,6 +4,7 @@ from datetime import datetime
 from flask import Flask, render_template, send_from_directory, request
 
 from src import database
+from src.jinja_helper import today
 from src.views import auth
 from src.views import books
 from src.views import members
@@ -34,6 +35,8 @@ def test():
         print(date)
     return render_template("test.html")
 
+
+app.jinja_env.globals["today"] = today
 
 app.register_blueprint(auth.bp)
 app.register_blueprint(books.bp)
