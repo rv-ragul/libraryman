@@ -7,7 +7,37 @@
 
 {% block content %}
 <section id="Section">
-    <div>Login successfull!</div>
-    <div></div>
+    <div>
+        <div>Books</div>
+        <div class="Grid">
+            <div>Number of Books (With Copies)</div>
+            <span>&ndash;</span>
+            <div>{{ status.book_with_copies }}</div>
+            <div>Number of Books (Without Copies)</div>
+            <span>&ndash;</span>
+            <div>{{ status.book_without_copies }}</div>
+            <div>Total Number of books issued</div>
+            <span>&ndash;</span>
+            <div>{{ status.issued_books }}</div>
+        </div>
+    </div>
+    <div>
+        <div>Members</div>
+        <div class="Grid">
+            <div>Total Members</div>
+            <span>&ndash;</span>
+            <div>{{ status.total_members }}</div>
+            <div>Members with Dues</div>
+            <span>&ndash;</span>
+            <div>{{ status.members_with_dept }}</div>
+            <div>Total Dues</div>
+            <span>&ndash;</span>
+            <div>{{ status.total_dept }}</div>
+        </div>
+    </div>
 </section>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
 {% endblock %}

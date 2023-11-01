@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>{%block title %}{% endblock %} | Library Management System</title>
+    <title>{%block title %}{% endblock %} {% if self.title() %} | {% endif %} Library Management System</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
     {% block styles %}{% endblock %}
 </head>
