@@ -47,6 +47,9 @@ body > nav > ul li:hover:not(:last-child) {
   border-radius: 5%;
   background-color: #0069e0;
 }
+body > nav > ul .OtherSect {
+  color: #fec89a;
+}
 body > nav #dropdown {
   background-color: #dbd4ed;
   color: black;
@@ -151,13 +154,17 @@ body #update > div > form > div > button:hover {
   box-shadow: 2px 2px 6px grey;
 }
 body #update > div > form > div .update {
-  background-color: #81cfd1;
+  background-color: #8F38F3;
+  color: white;
 }
 body #update > div > form > div .cancel {
   background-color: #e3e9f4;
 }
 body main {
+  height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 body main > div {
   display: flex;

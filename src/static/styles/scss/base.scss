@@ -53,6 +53,9 @@ body {
                     background-color: theme.$primary-focus;
                 }
             }
+            .OtherSect {
+                color: #fec89a;
+            }
         }
 
         #dropdown {
@@ -168,7 +171,8 @@ body {
                         }
                     }
                     .update {
-                        background-color: theme.$success;
+                        background-color: theme.$tertiary;
+                        color: white;
                     }
                     .cancel {
                         background-color: theme.$base-300;
@@ -179,7 +183,10 @@ body {
     }
 
     main {
+        height: 100%;
         width: 100%;
+        display: flex;
+        flex-direction: column;
 
         & > div {
             display: flex;

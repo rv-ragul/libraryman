@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block routes %}
+<li class="OtherSect"><a href="{{ url_for('members.view_members') }}">Members</a></li>
 <li><a href="{{ url_for('books.import_books') }}">Import</a></li>
 <li><a href="{{ url_for('books.view_books') }}">View</a></li>
 <li><a href="{{ url_for('books.return_book') }}">Return</a></li>
