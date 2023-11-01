@@ -176,13 +176,17 @@ def import_books():
                 for book in books:
                     book["num_pages"] = book.pop("  num_pages")
                     stmt = insert(Book).values(book)
-                    stmt = stmt.on_conflict_do_update(
+                    insert_stmt = stmt.on_conflict_do_update(
                         constraint="books_pkey",
-                        set_=dict(total=stmt.excluded.get("total") + 1),  # type:ignore
+                        set_=dict(
+                            total=stmt.excluded.get("total") + Book.total
+                        ),  # type:ignore
                     )
-                    db.execute(stmt)
-                db.commit()
+                    db.execute(insert_stmt)
+            db.commit()
         except AssertionError:
             return "API error", 450
-
+        except IntegrityError:
+            return "Database error", 450
+        return ""
     return render_template("books/import.html")
