@@ -5,7 +5,7 @@ const add_member = () => {
     const address = form.address.value
 
     if (!name || !phone || !address) {
-        notify("All the fields are required")
+        notify("All the fields are required", "error")
         return
     }
 
@@ -15,7 +15,7 @@ const add_member = () => {
         body: formData,
     }).then((response) => {
         if (response.ok) {
-            notify("New member added successfully!")
+            notify("New member added successfully!", "success")
             form.reset()
         }
     })

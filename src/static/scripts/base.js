@@ -1,5 +1,32 @@
-const notify = (msg) => {
-    console.log(msg)
+const notify = (msg, status) => {
+
+    const element = document.querySelector("#notification")
+    const msgElement = element.querySelector("#message")
+    msgElement.textContent = msg
+    let bgColor;
+    switch (status) {
+        case "info":
+            bgColor = "#93e7fb"
+            msgElement.style.color = "black"
+            break
+        case "error":
+            bgColor = "#f95959";
+            break;
+        case "warn":
+            bgColor = "#efd7bb";
+            break;
+        case "success":
+            bgColor = "#81cfd1"
+            break
+        default:
+            bgColor = "#efd7bb";
+
+    }
+    msgElement.style.cssText += `background-color:${bgColor}`
+    element.style.display = "flex";
+    setTimeout(() => {
+        element.style.display = "none";
+    }, 5000)
 }
 
 let dropdownVisible = false
@@ -32,11 +59,11 @@ const changePassword = () => {
     const confirmPassword = form.confirmPassword.value
 
     if (password == "" || confirmPassword == "") {
-        notify("All the fields are required!")
+        notify("All the fields are required!", "warn")
         return
     }
     if (password != confirmPassword) {
-        notify("Passwords don't match")
+        notify("Passwords don't match", "error")
         return
     }
 
@@ -47,9 +74,11 @@ const changePassword = () => {
         body: formData,
     }).then((response) => {
         if (response.ok) {
-            notify("Password updated successfully!")
+            notify("Password updated successfully!", "success")
             form.reset()
             cancelUpdate()
+        } else {
+            notify(response.text, "error")
         }
     })
 }

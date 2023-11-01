@@ -58,10 +58,10 @@ def update_password():
         user.password = generate_password_hash(password)
         db.commit()
     except AssertionError:
-        return "Failed to get logged in user", 400
+        return "Failed to get logged in user", 450
     except IntegrityError:
         db.rollback()
-        return "Failed to update password", 400
+        return "Failed to update password", 450
     return ""
 
 
@@ -83,7 +83,7 @@ def register():
             db.commit()
             return redirect(url_for("auth.login"))
         except IntegrityError:
-            return f"User {username} is already registered", 400
+            return f"User {username} is already registered", 450
     return render_template("auth/register.html")
 
 
@@ -92,26 +92,20 @@ def login():
     if request.method == "POST":
         username = request.form["userName"]
         password = request.form["password"]
-        error = None
         user: User | None = None
 
         db = get_db()
         try:
             user = db.execute(select(User).where(User.name == username)).scalar_one()
         except NoResultFound:
-            error = "No user found!"
-            flash(error)
-            return render_template("auth/login.html")
+            return "No user found!", 450
 
         if not check_password_hash(str(user.password), password):
-            error = "Incorrect credentials"
+            return "Incorrect credentials", 450
 
-        if error is None:
-            session.clear()
-            session["username"] = user.name
-            return redirect(url_for("index"))
-        flash(error)
+        session.clear()
+        session["username"] = user.name
+        return redirect(url_for("index"))
     if request.method == "GET" and session.get("username"):
-        print(session)
         return redirect(url_for("index"))
     return render_template("auth/login.html")

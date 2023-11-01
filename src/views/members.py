@@ -46,7 +46,7 @@ def add_member():
             db.commit()
         except IntegrityError:
             db.rollback()
-            return "Some error", 400
+            return "Couldn't add member", 450
 
     return render_template("members/add.html")
 
@@ -71,13 +71,13 @@ def update_member():
             member.address = address
             db.commit()
         except AssertionError:
-            return "Member does not exist", 400
+            return "Member does not exist", 450
         except IntegrityError:
             db.rollback()
-            return "some error", 400
+            return "Couldn't update member", 450
 
     elif request.method == "GET":
-        member=None
+        member = None
         id = request.args.get("id")
         if id:
             member = db.get(Member, id)
@@ -95,13 +95,13 @@ def remove_member(id):
         assert member is not None
         # Have some dept, so dont remove
         if member.dept != 0:  # type:ignore
-            return "", 450
+            return "Due pending, so not removed", 450
         db.delete(member)
         db.commit()
     except AssertionError:
         return "Member doesn't exitst", 400
     except IntegrityError:
         db.rollback()
-        return "", 400
+        return "Couldn't remove member", 450
 
-    return "", 200
+    return ""

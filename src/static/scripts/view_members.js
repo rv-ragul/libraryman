@@ -5,10 +5,10 @@ const remove_member = (id) => {
         if (response.ok) {
             const member = document.getElementById(id)
             member.parentNode.removeChild(member)
-            notify()
+            notify("Member removed successfully", "success")
         }
         else {
-            notify()
+            notify(response.text, "error")
         }
 
     })

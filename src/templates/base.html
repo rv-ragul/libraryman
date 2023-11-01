@@ -45,6 +45,9 @@
         {% block content %}{% endblock %}
     </main>
 
+    <div id="notification">
+        <span id="message"></span>
+    </div>
     {% block scripts %}{% endblock %}
 
     <script src="{{ url_for('static',filename='scripts/base.js') }}"></script>

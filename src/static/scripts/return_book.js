@@ -6,7 +6,7 @@ const return_book = () => {
     const paid = form.querySelector("[name=paid]")
 
     if (!bookID || !memberID || !_returnDate) {
-        notify("All fields are required")
+        notify("All fields are required", "warn")
         return
     }
 

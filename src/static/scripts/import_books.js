@@ -6,6 +6,10 @@ const importBooks = () => {
         method: "POST",
         body: formData
     }).then((response) => {
-        notify(response)
+        if (response.ok) {
+            notify("Books imported successfully!", "success")
+        } else {
+            notify(response.text, "error")
+        }
     })
 }

@@ -175,4 +175,30 @@ body main > div {
   margin: 15px;
 }
 
+@keyframes notification {
+  0% {
+    bottom: -50px;
+  }
+  10% {
+    bottom: 30px;
+  }
+  90% {
+    bottom: 30px;
+  }
+  100% {
+    bottom: -50px;
+  }
+}
+#notification {
+  position: absolute;
+  bottom: -50px;
+  display: none;
+  justify-content: center;
+  animation: notification 4s ease-out;
+  width: 100%;
+}
+#notification #message {
+  padding: 0.5em 2em;
+}
+
 /*# sourceMappingURL=base.css.map */

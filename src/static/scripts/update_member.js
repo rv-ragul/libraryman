@@ -6,7 +6,7 @@ const update_member = () => {
     const address = form.address.value
 
     if (!id || !name || !phone || !address) {
-        notify("All the fields are required")
+        notify("All the fields are required", "warn")
         return
     }
     const formData = new FormData(form)

@@ -7,7 +7,7 @@ const issue_book = () => {
     const authors = form.authors.value
 
     if (!bookID || !memberID || !title || !authors) {
-        notify("All the fields are required")
+        notify("All the fields are required", "warn")
         return
     }
 
@@ -18,7 +18,10 @@ const issue_book = () => {
         body: formData
     }).then(async (response) => {
         if (response.ok) {
-            location.search = ""
+            notify("Book issued successfully!", "success")
+            setTimeout(() => {
+                location.search = ""
+            }, 3000)
         }
     })
 }

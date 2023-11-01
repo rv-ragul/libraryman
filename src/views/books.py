@@ -83,7 +83,7 @@ def issue():
         memberID = request.form["memberID"]
 
         if not db.get(Book, bookID):
-            return "Requested book doesn't exist in the Library", 400
+            return "Requested book doesn't exist in the Library", 450
         try:
             stmt = select(Issued).where(
                 and_(Issued.bookID == bookID, Issued.memberID == memberID)
@@ -98,7 +98,7 @@ def issue():
             db.rollback()
             return "This book already issued to someone", 450
 
-        return "Book issued successfully!", 200
+        return ""
     elif request.method == "GET":
         book = None
         id = request.args.get("id")
@@ -147,7 +147,7 @@ def return_book():
         except AssertionError:
             return "Book with given ID is not issued", 450
 
-        return "Book returned successfully!"
+        return ""
     elif request.method == "GET":
         book = None
         id = request.args.get("id")
