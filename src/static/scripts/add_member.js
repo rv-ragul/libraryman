@@ -18,10 +18,12 @@ const add_member = () => {
     fetch("http://localhost:5000/members/add", {
         method: "POST",
         body: formData,
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.ok) {
             notify("New member added successfully!", "success")
             form.reset()
+        } else {
+            notify(await response.text(), "error")
         }
     })
 }

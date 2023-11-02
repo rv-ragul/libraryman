@@ -19,7 +19,7 @@ const issue_book = () => {
             notify("Book issued successfully!", "success")
             setTimeout(() => {
                 location.search = ""
-            }, 3000)
+            }, 2000)
         }
         else {
             notify(await response.text(), "error")

@@ -20,7 +20,7 @@ const update_member = () => {
             notify("Member updated successfully!", "success")
             setTimeout(() => {
                 location.search = ""
-            }, 3000)
+            }, 2000)
         }
     })
 }

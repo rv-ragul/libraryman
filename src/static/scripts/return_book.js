@@ -21,12 +21,15 @@ const return_book = () => {
     fetch("http://localhost:5000/books/return", {
         method: "POST",
         body: formData
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.ok) {
             notify("Book returned successfully", "success")
             setTimeout(() => {
                 location.search = ""
-            }, 3000)
+            }, 2000)
+        }
+        else {
+            notify(await response.text(), "error")
         }
     })
 }
