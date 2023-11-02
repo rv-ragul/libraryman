@@ -9,6 +9,8 @@ const issue_book = () => {
         return
     }
 
+    const submitBtn = document.querySelector("#submit")
+    submitBtn.disabled = true
     const formData = new FormData(form)
     formData.append("bookID", bookID)
     fetch("http://localhost:5000/books/issue", {
@@ -24,6 +26,7 @@ const issue_book = () => {
         else {
             notify(await response.text(), "error")
         }
+        submitBtn.disabled = false
     })
 }
 

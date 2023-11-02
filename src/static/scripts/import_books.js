@@ -1,4 +1,6 @@
 const importBooks = () => {
+    const submitBtn = document.querySelector("#submit")
+    submitBtn.disabled = true
     const form = document.querySelector("#Form")
     const formData = new FormData(form)
 
@@ -16,5 +18,6 @@ const importBooks = () => {
         } else {
             notify(await response.text(), "error")
         }
+        submitBtn.disabled = false
     })
 }

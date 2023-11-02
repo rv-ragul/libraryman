@@ -10,6 +10,8 @@ const return_book = () => {
         return
     }
 
+    const submitBtn = document.querySelector("#submit")
+    submitBtn.disabled = true
     const formData = new FormData()
     let returnDate = new Date(_returnDate)
     formData.append("bookID", bookID)
@@ -31,5 +33,6 @@ const return_book = () => {
         else {
             notify(await response.text(), "error")
         }
+        submitBtn.disabled = false
     })
 }

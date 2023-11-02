@@ -38,9 +38,14 @@
             color: black;
             background-color: theme.$base-300;
 
-            &:hover {
+            &:hover:not(:disabled) {
                 cursor: pointer;
                 box-shadow: 2px 2px 6px grey;
+            }
+
+            &:disabled {
+                cursor: not-allowed;
+                color: black;
             }
         }
     }

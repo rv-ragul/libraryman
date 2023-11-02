@@ -14,6 +14,8 @@ const add_member = () => {
         return
     }
 
+    const submitBtn = document.querySelector("#submit")
+    submitBtn.disabled = true
     const formData = new FormData(form)
     fetch("http://localhost:5000/members/add", {
         method: "POST",
@@ -25,5 +27,6 @@ const add_member = () => {
         } else {
             notify(await response.text(), "error")
         }
+        submitBtn.disabled = false
     })
 }

@@ -34,9 +34,13 @@
   color: black;
   background-color: #e3e9f4;
 }
-#Section #Form .button:hover {
+#Section #Form .button:hover:not(:disabled) {
   cursor: pointer;
   box-shadow: 2px 2px 6px grey;
+}
+#Section #Form .button:disabled {
+  cursor: not-allowed;
+  color: black;
 }
 
 /*# sourceMappingURL=form.css.map */

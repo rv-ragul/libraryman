@@ -10,6 +10,9 @@ const update_member = () => {
         notify("All the fields are required", "warn")
         return
     }
+
+    const submitBtn = document.querySelector("#submit")
+    submitBtn.disabled = true
     const formData = new FormData(form)
     formData.append("id", id.value)
     fetch("http://localhost:5000/members/update", {
@@ -22,6 +25,7 @@ const update_member = () => {
                 location.search = ""
             }, 2000)
         }
+        submitBtn.disabled = false
     })
 }
 
