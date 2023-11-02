@@ -24,11 +24,11 @@ const login = (register) => {
     fetch(url, {
         method: "POST",
         body: formData,
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.ok) {
             window.location.href = response.url
         } else {
-            notify(response.text, "error")
+            notify(await response.text(), "error")
         }
     })
 

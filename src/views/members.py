@@ -12,6 +12,7 @@ bp = Blueprint("members", __name__, url_prefix="/members")
 
 
 @bp.get("/")
+@login_required
 def view_members():
     """List the members in the database"""
 

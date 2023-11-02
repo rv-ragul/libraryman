@@ -179,10 +179,10 @@ body main > div {
   0% {
     bottom: -50px;
   }
-  10% {
+  5% {
     bottom: 30px;
   }
-  90% {
+  95% {
     bottom: 30px;
   }
   100% {

@@ -188,5 +188,5 @@ def import_books():
             return "API error", 450
         except IntegrityError:
             return "Database error", 450
-        return ""
+        return str(len(books))
     return render_template("books/import.html")

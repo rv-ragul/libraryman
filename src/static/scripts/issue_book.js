@@ -6,8 +6,9 @@ const issue_book = () => {
     const title = form.title.value
     const authors = form.authors.value
 
-    if (!bookID || !memberID || !title || !authors) {
-        notify("All the fields are required", "warn")
+const issue_book = () => {
+    if (!bookID.value || !memberID.value) {
+        notify("Please fill the required fields", "warn")
         return
     }
 
@@ -22,6 +23,9 @@ const issue_book = () => {
             setTimeout(() => {
                 location.search = ""
             }, 3000)
+        }
+        else {
+            notify(await response.text(), "error")
         }
     })
 }

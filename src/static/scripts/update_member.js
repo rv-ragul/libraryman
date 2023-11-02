@@ -16,7 +16,10 @@ const update_member = () => {
         body: formData
     }).then(async (response) => {
         if (response.ok) {
-            location.search = ""
+            notify("Member updated successfully!", "success")
+            setTimeout(() => {
+                location.search = ""
+            }, 3000)
         }
     })
 }

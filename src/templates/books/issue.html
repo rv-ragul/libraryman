@@ -17,9 +17,9 @@
         <label for="memberID">Member ID</label>
         <input type="number" name="memberID" class="input">
         <label for="title">Book title</label>
-        <input type="text" name="title" class="input" {% if book %} value="{{ book.title }}" disabled {% endif %}>
+        <input type="text" name="title" class="input" {% if book %} value="{{ book.title }}" {% endif %} disabled>
         <label for="authors">Book Authors</label>
-        <input type="text" name="authors" class="input" {% if book %} value="{{ book.authors }}" disabled {% endif %}>
+        <input type="text" name="authors" class="input" {% if book %} value="{{ book.authors }}" {% endif %} disabled>
         <input type="button" value="Submit" onclick="issue_book()" class="button">
     </form>
 </section>

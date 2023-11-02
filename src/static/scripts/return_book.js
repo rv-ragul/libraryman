@@ -23,7 +23,10 @@ const return_book = () => {
         body: formData
     }).then((response) => {
         if (response.ok) {
-            location.search = ""
+            notify("Book returned successfully", "success")
+            setTimeout(() => {
+                location.search = ""
+            }, 3000)
         }
     })
 }

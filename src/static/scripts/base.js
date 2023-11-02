@@ -1,6 +1,7 @@
 const notify = (msg, status) => {
 
     const element = document.querySelector("#notification")
+    element.style.display = "none";
     const msgElement = element.querySelector("#message")
     msgElement.textContent = msg
     let bgColor;
@@ -42,7 +43,7 @@ const toggleDropdown = () => {
     dropdownVisible = !dropdownVisible
 }
 
-const showChangeForm = () => {
+const showPasswordForm = () => {
     toggleDropdown()
     const updateSection = document.querySelector("#update")
     updateSection.style.display = "flex"
@@ -72,13 +73,13 @@ const changePassword = () => {
     fetch("http://localhost:5000/auth/update", {
         method: "POST",
         body: formData,
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.ok) {
             notify("Password updated successfully!", "success")
             form.reset()
             cancelUpdate()
         } else {
-            notify(response.text, "error")
+            notify(await response.text(), "error")
         }
     })
 }

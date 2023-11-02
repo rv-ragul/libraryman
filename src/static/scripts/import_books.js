@@ -5,11 +5,16 @@ const importBooks = () => {
     fetch("http://localhost:5000/books/import", {
         method: "POST",
         body: formData
-    }).then((response) => {
+    }).then(async (response) => {
         if (response.ok) {
-            notify("Books imported successfully!", "success")
+            const numBooks = await response.text()
+            if (numBooks == 0) {
+                notify(`Oops!, No books found for given criteria`, "warn")
+            } else {
+                notify(`Imported ${numBooks} books successfully!`, "success")
+            }
         } else {
-            notify(response.text, "error")
+            notify(await response.text(), "error")
         }
     })
 }

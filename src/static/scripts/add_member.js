@@ -9,6 +9,11 @@ const add_member = () => {
         return
     }
 
+    if (String(phone.value).length != 10) {
+        notify("Phone number doesn't have 10 digits", "error")
+        return
+    }
+
     const formData = new FormData(form)
     fetch("http://localhost:5000/members/add", {
         method: "POST",
