@@ -1,10 +1,10 @@
-const add_member = () => {
-    const form = document.querySelector("#Form")
-    const name = form.name.value
-    const phone = form.phone.value
-    const address = form.address.value
+const form = document.querySelector("#Form")
+const memberName = form.querySelector("[name=name]")
+const phone = form.querySelector("[name=phone]")
+const address = form.querySelector("[name=address]")
 
-    if (!name || !phone || !address) {
+const add_member = () => {
+    if (!memberName.value || !phone.value || !address.value) {
         notify("All the fields are required", "error")
         return
     }

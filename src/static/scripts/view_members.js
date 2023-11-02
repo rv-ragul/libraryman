@@ -19,11 +19,11 @@ const update_member = (id) => {
 }
 
 // Search members based on id or name
-const form = document.querySelector("#Form")
-const id_input = form.querySelector("[name=id]")
-const name_input = form.querySelector("[name=name]")
-const btnSearch = form.querySelector("#search")
-const btnReset = form.querySelector("#reset")
+const document = document.querySelector("#Form")
+const id_input = document.querySelector("[name=id]")
+const name_input = document.querySelector("[name=name]")
+const btnSearch = document.querySelector("#search")
+const btnReset = document.querySelector("#reset")
 
 id_input.addEventListener("input", (_event) => {
     name_input.value = ''

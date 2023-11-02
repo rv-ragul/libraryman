@@ -1,10 +1,7 @@
-const issue_book = () => {
-
-    const form = document.querySelector("#Form")
-    const bookID = form.bookID.value
-    const memberID = form.memberID.value
-    const title = form.title.value
-    const authors = form.authors.value
+const form = document.querySelector("#Form")
+const bookID = form.querySelector("[name=bookID]")
+const title = form.querySelector("[name=title]")
+const authors = form.querySelector("[name=authors]")
 
 const issue_book = () => {
     if (!bookID.value || !memberID.value) {
@@ -29,3 +26,18 @@ const issue_book = () => {
         }
     })
 }
+
+bookID.addEventListener("focusout", () => {
+    fetch("http://localhost:5000/books/" + bookID.value).then(async (response) => {
+        if (response.ok) {
+            const res = await response.json()
+            title.value = res.title
+            authors.value = res.authors
+        }
+        else {
+            notify(await response.text(), "error")
+            title.value = ""
+            authors.value = ""
+        }
+    })
+})

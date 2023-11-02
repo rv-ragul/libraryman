@@ -4,8 +4,7 @@ from flask import Blueprint, render_template, request
 import httpx
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy.exc import IntegrityError
-from sqlalchemy.sql.functions import count
+from sqlalchemy.exc import IntegrityError, NoResultFound
 
 from src.database import get_db
 from src.models import Book, Issued, Member
@@ -13,6 +12,20 @@ from src.models import Book, Issued, Member
 from .auth import login_required
 
 bp = Blueprint("books", __name__, url_prefix="/books")
+
+
+@bp.get("/<int:id>")
+@login_required
+def get_books(id):
+    """Get information about a book"""
+
+    db = get_db()
+    try:
+        stmt = select(Book.title, Book.authors).where(Book.bookID == id)
+        res: Book = db.execute(stmt).one()
+    except NoResultFound:
+        return "Book ID doesn't exist", 450
+    return {"title": res.title, "authors": res.authors}
 
 
 @bp.get("/")
@@ -96,7 +109,7 @@ def issue():
             return "Only one copy can be issued to a person", 450
         except IntegrityError:
             db.rollback()
-            return "This book already issued to someone", 450
+            return "Member ID doesn't exist", 450
 
         return ""
     elif request.method == "GET":

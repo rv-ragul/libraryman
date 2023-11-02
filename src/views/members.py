@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, NoResultFound
 
 from src.database import get_db
 from src.models import Member
@@ -9,6 +9,20 @@ from .auth import login_required
 
 
 bp = Blueprint("members", __name__, url_prefix="/members")
+
+
+@bp.get("/<int:id>")
+@login_required
+def get_member(id):
+    """Get information about a member"""
+
+    db = get_db()
+    try:
+        stmt = select(Member.name, Member.phone, Member.address).where(Member.id == id)
+        res: Member = db.execute(stmt).one()
+    except NoResultFound:
+        return "Member ID doesn't exist", 450
+    return {"name": res.name, "phone": res.phone, "address": res.address}
 
 
 @bp.get("/")
