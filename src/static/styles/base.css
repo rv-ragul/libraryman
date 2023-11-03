@@ -4,6 +4,7 @@ body {
   font-size: 1.2rem;
   margin: 0;
   padding: 0;
+  height: 100vh;
 }
 body > nav {
   display: flex;
@@ -160,6 +161,7 @@ body #update > div > form > div .cancel {
   background-color: #e3e9f4;
 }
 body main {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

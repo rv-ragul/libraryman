@@ -1,5 +1,7 @@
 @use "theme";
-
+body {
+    height: unset;
+}
 #Form {
     display: flex;
     justify-content: center;
