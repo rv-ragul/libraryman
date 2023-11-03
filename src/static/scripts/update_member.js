@@ -28,6 +28,8 @@ const update_member = () => {
             setTimeout(() => {
                 resetForm()
             }, 2000)
+        } else {
+            notify(await response.text(), "error")
         }
         submitBtn.disabled = false
     })

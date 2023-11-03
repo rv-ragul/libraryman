@@ -138,6 +138,10 @@ def return_book():
         returnDate = date(returnDate.year, returnDate.month, returnDate.day)
 
         try:
+            member = db.get(Member, memberID)
+            if member is None:
+                return "Member ID doesn't exist", 450
+
             # update return date
             stmt = select(Issued).where(
                 and_(Issued.bookID == bookID, Issued.memberID == memberID)
@@ -148,8 +152,6 @@ def return_book():
 
             # update dept
             if not paid:
-                member = db.get(Member, memberID)
-                assert member is not None
                 member.dept += (date.today() - issued_book.issued_date).days
             else:
                 issued_book.rent_paid = True  # type:ignore
@@ -158,7 +160,8 @@ def return_book():
             db.rollback()
             return "Can't return the book", 450
         except AssertionError:
-            return "Book with given ID is not issued", 450
+            db.rollback()
+            return f"Book with given ID is not issued to {member.name}", 450
 
         return ""
     elif request.method == "GET":
