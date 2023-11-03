@@ -3,6 +3,9 @@ const bookID = form.querySelector("[name=bookID]")
 const title = form.querySelector("[name=title]")
 const authors = form.querySelector("[name=authors]")
 
+const resetForm = () => {
+    location.search = ""
+}
 const issue_book = () => {
     if (!bookID.value || !memberID.value) {
         notify("Please fill the required fields", "warn")
@@ -20,7 +23,7 @@ const issue_book = () => {
         if (response.ok) {
             notify("Book issued successfully!", "success")
             setTimeout(() => {
-                location.search = ""
+                resetForm()
             }, 2000)
         }
         else {

@@ -4,6 +4,10 @@ const memberName = form.querySelector("[name=name]")
 const phone = form.querySelector("[name=phone]")
 const address = form.querySelector("[name=address]")
 
+const resetForm = () => {
+    location.search = ""
+}
+
 const update_member = () => {
 
     if (!id.value || !memberName.value || !phone.value || !address.value) {
@@ -22,7 +26,7 @@ const update_member = () => {
         if (response.ok) {
             notify("Member updated successfully!", "success")
             setTimeout(() => {
-                location.search = ""
+                resetForm()
             }, 2000)
         }
         submitBtn.disabled = false

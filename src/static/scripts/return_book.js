@@ -1,3 +1,6 @@
+const resetForm = () => {
+    location.search = ""
+}
 const return_book = () => {
     const form = document.querySelector("#Form")
     const bookID = form.bookID.value
@@ -27,7 +30,7 @@ const return_book = () => {
         if (response.ok) {
             notify("Book returned successfully", "success")
             setTimeout(() => {
-                location.search = ""
+                resetForm()
             }, 2000)
         }
         else {

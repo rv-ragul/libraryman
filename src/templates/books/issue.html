@@ -20,7 +20,10 @@
         <input type="text" name="title" class="input" {% if book %} value="{{ book.title }}" {% endif %} disabled>
         <label for="authors">Book Authors</label>
         <input type="text" name="authors" class="input" {% if book %} value="{{ book.authors }}" {% endif %} disabled>
-        <input id="submit" type="button" value="Submit" onclick="issue_book()" class="button">
+        <div>
+            <input id="reset" type="button" value="Reset" onclick="resetForm()" class="button">
+            <input id="submit" type="button" value="Submit" onclick="issue_book()" class="button">
+        </div>
     </form>
 </section>
 {% endblock %}

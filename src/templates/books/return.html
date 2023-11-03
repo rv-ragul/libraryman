@@ -17,13 +17,16 @@
         <label for="memberID">Member ID</label>
         <input type="text" name="memberID" class="input" {% if book %} value="{{ book.memberID }}" disabled {% endif %}>
         <label for="returnDate">Return Date</label>
-        <input type="date" name="returnDate" class="input" {% if book.return_date %} value="{{ book.return_date }}" disabled {%
-            else %} value="{{ today() }}" {% endif %}>
-        <div>
+        <input type="date" name="returnDate" class="input" {% if book.return_date %} value="{{ book.return_date }}"
+            disabled {% else %} value="{{ today() }}" {% endif %}>
+        <span>
             <input type="checkbox" name="paid" class="input">
             <label for="paid">Paid return charge</label>
+        </span>
+        <div>
+            <input id="reset" type="button" value="Reset" onclick="resetForm()" class="button">
+            <input id="submit" type="button" value="Return book" onclick="return_book()" class="button">
         </div>
-        <input id="submit" type="button" value="Return book" onclick="return_book()" class="button">
     </form>
 </section>
 {% endblock %}
