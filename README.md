@@ -32,12 +32,8 @@ Librarian will be able to the Number of Books with and without Copies in the dat
 1. Librarian can change their password by clicking `<Profile photo>` -> `Change Password`
 2. Logging out the application can be done by `<Profile photo>` -> `Logout`
 
-<span>
-
-[](./screenshots/landing-page.png)
-[](./screenshots/update-password.png)
-
-</span>
+<img src="./screenshots/landing-page.png" />
+<img src="./screenshots/update-password.png" />
 
 ## Books
 
@@ -45,7 +41,7 @@ Librarian will be able to the Number of Books with and without Copies in the dat
 
 A form is provided to librarian to give details about the books he/she want to import. All the fields are optional. Books will be fetched from frappe API.
 
-[](./screenshots/import-books.png)
+<img src="./screenshots/import-books.png" />
 
 ### View books
 
@@ -55,7 +51,7 @@ Books can be issued from here by clicking the `Issue` button.
 1. Books can be issued by clicking the `Issue` button.
 2. We can query the books list by the `book title` and `book authors`
 
-[](./screenshots/view-books.png)
+<img src="./screenshots/view-books.png" />
 
 ### Issue Book
 
@@ -67,7 +63,7 @@ There are two ways to issue a book:
     2. When the focus is lost in Book ID input field, `title` and `authors` will be autofilled.
     3. When librarian enters any incorrect data, error will be show.
 
-[](./screenshots/issue-book.png)
+<img src="./screenshots/issue-book.png" />
 
 ### View Issued Books
 
@@ -77,7 +73,7 @@ All the books issued will be listed here. Details like `Issued date`, `Number of
 2. Dues can be paid by clicking the `Pay Rent` button.
 3. We can query the issued books list by the `book title` and `book authors`
 
-[](./screenshots/view-issued-books.png)
+<img src="./screenshots/view-issued-books.png" />
 
 ### Return Book
 
@@ -89,7 +85,7 @@ There are two ways to return a book:
 
 Members can pay the due when returning book or later. Accordingly, the `Paid return charge` checkbox will be checked.
 
-[](./screenshots/return-book.png)
+<img src="./screenshots/return-book.png" />
 
 ## Members
 
@@ -97,7 +93,7 @@ Members can pay the due when returning book or later. Accordingly, the `Paid ret
 
 Librarian will enter the details like `name`, `phone`, `address`.
 
-[](./screenshots/add-members.png)
+<img src="./screenshots/add-members.png" />
 
 ### View Members
 
@@ -107,13 +103,13 @@ Member details will be shown here.
 2. Update a member by pressing `Update` button.
 3. Query the members list by `ID`, `Name`.
 
-[](./screenshots/view-members.png)
+<img src="./screenshots/view-members.png" />
 
 ### Remove Member
 
 See [View Member](#view-members)
 
-[](./screenshots/remove-member.png)
+<img src="./screenshots/remove-member.png" />
 
 ### Update Member
 
@@ -124,4 +120,4 @@ There are two ways to update a member:
     1. Librarian has to enter `Member ID`.
     2. The member details will be autofilled. So we can edit the information.
 
-[](./screenshots/update-member.png)
+<img src="./screenshots/update-member.png" />
