@@ -114,7 +114,7 @@ def remove_member(id):
         db.delete(member)
         db.commit()
     except AssertionError:
-        return "Member doesn't exitst", 400
+        return "Member doesn't exist", 450
     except IntegrityError:
         db.rollback()
         return "Couldn't remove member", 450
