@@ -1,8 +1,7 @@
-from datetime import datetime
 import os
 from dataclasses import dataclass
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, send_from_directory
 from sqlalchemy import func, select
 
 from src.jinja_helper import today
@@ -53,15 +52,6 @@ def index():
 @app.route("/favicon.ico")
 def favicon():
     return send_from_directory(os.path.join(app.root_path, "static"), "favicon.ico")
-
-
-@app.route("/test", methods=["GET", "POST"])
-def test():
-    if request.method == "POST":
-        date = request.form["date"]
-        date = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S %Z")
-        print(date)
-    return render_template("test.html")
 
 
 app.jinja_env.globals["today"] = today
