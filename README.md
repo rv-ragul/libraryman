@@ -13,6 +13,8 @@ For Debian based systems:
 sudo apt install postgresql
 ```
 
+Change the database URL in `src/database.py`. URL format should be `postgresql://<username>:<password>@<host>:<port>/<database_name>`
+
 ### Run the application
 
 ```bash
