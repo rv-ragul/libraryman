@@ -50,7 +50,7 @@ Books can be issued from here by clicking the `Issue` button.
 
 There are two ways to issue a book:
 
-1. By clicking `Issue` button in the `/books/` page. Every information will be autofilled except Member ID. (**preffered**)
+1. By clicking `Issue` button in the `/books/` page. Every information will be autofilled except Member ID. (_**preffered**_)
 2. Manually entering the details.
     1. Librarian have to type `Book ID`.
     2. When the focus is lost in Book ID input field, `title` and `authors` will be autofilled.
@@ -68,7 +68,7 @@ All the books issued will be listed here. Details like `Issued date`, `Number of
 
 There are two ways to return a book:
 
-1. By clicking `Return` button in the `/books/issued` page. Every information will be autofilled. Librarian can only change the return date. (**preffered**)
+1. By clicking `Return` button in the `/books/issued` page. Every information will be autofilled. Librarian can only change the return date. (_**preffered**_)
 2. Manually entering the details.
     1. Library will enter the Book and Member ID. We can also change the return date.
 
@@ -96,7 +96,7 @@ See [View Member](#view-members)
 
 There are two ways to update a member:
 
-1. By clicking `Update` in `/members` page. (**preffered**)
+1. By clicking `Update` in `/members` page. (_**preffered**_)
 2. Manually entering the details.
     1. Librarian has to enter `Member ID`.
     2. The member details will be autofilled. So we can edit the information.
