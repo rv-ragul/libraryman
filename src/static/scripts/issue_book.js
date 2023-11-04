@@ -1,5 +1,6 @@
 const form = document.querySelector("#Form")
 const bookID = form.querySelector("[name=bookID]")
+const memberID = form.querySelector("[name=memberID]")
 const title = form.querySelector("[name=title]")
 const authors = form.querySelector("[name=authors]")
 
@@ -15,7 +16,7 @@ const issue_book = () => {
     const submitBtn = document.querySelector("#submit")
     submitBtn.disabled = true
     const formData = new FormData(form)
-    formData.append("bookID", bookID)
+    formData.append("bookID", bookID.value)
     fetch("http://localhost:5000/books/issue", {
         method: "POST",
         body: formData

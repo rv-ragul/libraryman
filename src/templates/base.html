@@ -9,6 +9,7 @@
 <body>
     <nav>
         <div><a href="{{ url_for('index') }}">Library Management System</a></div>
+        {% if g.user %}
         <ul>
             {% block routes %}{% endblock %}
             <li onclick="toggleDropdown()"
@@ -23,6 +24,7 @@
                 <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             </ul>
         </span>
+        {% endif %}
     </nav>
 
     <section id="update" style="display: none;">
