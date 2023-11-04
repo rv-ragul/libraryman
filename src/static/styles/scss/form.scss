@@ -1,5 +1,9 @@
 @use "theme";
 
+main {
+    margin-top: 1rem;
+}
+
 #Section {
     display: flex;
     flex-direction: column;

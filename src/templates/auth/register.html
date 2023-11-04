@@ -11,7 +11,7 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" name="confirmPassword" class="input">
         <input type="button" value="Register" class="button" onclick="login(resiter=true)">
-        <div>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></div>
+        <span>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></span>
     </form>
 </section>
 {% endblock %}
