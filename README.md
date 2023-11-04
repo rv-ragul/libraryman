@@ -16,11 +16,12 @@ sudo apt install postgresql
 ### Run the application
 
 ```bash
+. ./venv/bin/activate # activate virtual environment
+
 ## Install requirements
 pip install -r requirements.txt
 
 ## Run the application
-. ./venv/bin/activate # activate virtual environment
 flask --app src run
 ```
 
